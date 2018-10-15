@@ -13,6 +13,8 @@
 import { app, BrowserWindow } from 'electron';
 import MenuBuilder from './menu';
 
+app.setName('Gazette');
+
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {
@@ -60,12 +62,17 @@ app.on('ready', async () => {
     await installExtensions();
   }
 
+
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
     height: 728
   });
   mainWindow.maximize();
+  mainWindow.webContents.on('did-finish-load', () => {
+    const name = require('./package.json').name;
+    mainWindow.setTitle(name);
+  });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
