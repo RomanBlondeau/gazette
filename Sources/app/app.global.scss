@@ -3,6 +3,7 @@
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
 @import "~@fortawesome/fontawesome-free/css/all.css";
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Roboto');
 
 html {
   height: 100%;
@@ -11,7 +12,7 @@ html {
 body {
   height: 100%;
   background-color: #fff;
-  font-family: Arial, Helvetica, Helvetica Neue, serif;
+  font-family: Roboto, Arial, Helvetica, Helvetica Neue, serif;
   overflow-y: hidden;
   margin: 12px;
   color: #2b2b2b;
