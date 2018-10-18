@@ -1,0 +1,12 @@
+{
+  "database_config": [
+    "gazette",
+    "root",
+    null, {
+      "host": "localhost",
+      "dialect": "mysql",
+      "logging": false
+    }
+  ],
+  "port": 3000
+}
