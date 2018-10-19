@@ -34,37 +34,37 @@ export default class LoginForm extends Component<Props> {
       <div className={styles.container} data-tid="container">
 
         <div>
-        <FormControl className={styles.form}>
-          <InputLabel htmlFor="adornment-username">Username</InputLabel>
-          <Input
-            id="adornment-username"
-            type='text'
-            value={username}
-            onChange={this.handleChange('username')}
-          />
-        </FormControl>
+          <FormControl className={styles.form}>
+            <InputLabel htmlFor="adornment-username">Username</InputLabel>
+            <Input
+              id="adornment-username"
+              type='text'
+              value={username}
+              onChange={this.handleChange('username')}
+            />
+          </FormControl>
         </div>
 
         <div>
-        <FormControl className={styles.form}>
-          <InputLabel htmlFor="adornment-password">Password</InputLabel>
-          <Input
-            id="adornment-password"
-            type={showPassword ? 'text' : 'password'}
-            value={password}
-            onChange={this.handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+          <FormControl className={styles.form}>
+            <InputLabel htmlFor="adornment-password">Password</InputLabel>
+            <Input
+              id="adornment-password"
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={this.handleChange('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
         </div>
 
       </div>

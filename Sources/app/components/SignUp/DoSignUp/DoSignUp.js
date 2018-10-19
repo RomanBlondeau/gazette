@@ -1,11 +1,11 @@
 // @flow
 import React, { Component } from 'react';
 import Button from "@material-ui/core/Button/Button";
-import styles from './DoLogin.scss';
+import styles from './DoSignUp.scss';
 
 type Props = {};
 
-export default class DoLogin extends Component<Props> {
+export default class DoSignUp extends Component<Props> {
   props: Props;
 
   handleChange = () => {
@@ -15,8 +15,8 @@ export default class DoLogin extends Component<Props> {
   render() {
     return (
       <div className={styles.container} data-tid="container">
-        <Button variant="contained" color="primary" className={styles.button} onClick={this.handleChange}>
-          Login
+        <Button variant="contained" className={styles.button} onClick={this.handleChange}>
+          Sign up
         </Button>
       </div>
     );
