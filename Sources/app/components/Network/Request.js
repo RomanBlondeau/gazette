@@ -2,13 +2,15 @@ import axios from 'axios';
 import { Service } from 'axios-middleware';
 import jwt from 'jwt-decode';
 
+const config = require('../../../config');
+
 const token = localStorage.getItem('token');
 
 const service = new Service(axios);
 
 service.register({
   onRequest(request) {
-    if (request.baseURL === process.env.REACT_APP_SERVER_URL) {
+    if (request.baseURL === config.network.baseUrl) {
       const delta = jwt(request.headers.Authorization).exp * 1000 - Date.now();
       if (delta < 0) {
         window.location.reload();
@@ -19,7 +21,7 @@ service.register({
 });
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_URL,
+  baseURL: config.network.baseUrl,
   headers: {
     Authorization: token,
     'Content-Type': 'application/json',

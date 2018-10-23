@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './DoSignUp.scss';
 
+const config = require('../../../../config');
+
 type Props = {};
 
 export default class DoSignUp extends Component<Props> {
@@ -12,10 +14,8 @@ export default class DoSignUp extends Component<Props> {
 
   handleChange = () => {
     const { password, username, firstName, lastName, email } = this.props;
-    console.log(password, username, firstName, lastName, email);
-    console.log(process.env.REACT_APP_SERVER_URL);
     axios
-      .post(process.env.REACT_APP_SERVER_URL, {
+      .post(config.network.baseUrl, {
         email,
         username,
         password,
