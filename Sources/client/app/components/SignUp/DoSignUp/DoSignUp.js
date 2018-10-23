@@ -38,7 +38,7 @@ export default class DoSignUp extends Component<Props> {
           errorMessage:
             err.response !== undefined
               ? err.response.data.message
-              : 'An' + ' error occured, please try again.',
+              : 'An error occured, please try again.',
           errorOpen: true
         });
       });

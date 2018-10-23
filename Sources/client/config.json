@@ -4,7 +4,8 @@
   },
   "routes": {
     "auth": {
-      "register": "http://10.138.11.175:3000/user/register"
+      "register": "http://10.138.11.175:3000/user/register",
+      "login": "http://10.138.11.175:3000/user/login"
     }
   }
 }

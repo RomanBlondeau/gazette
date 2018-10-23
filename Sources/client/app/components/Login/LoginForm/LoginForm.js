@@ -7,6 +7,7 @@ import InputAdornment from '@material-ui/core/InputAdornment/InputAdornment';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import PropTypes from 'prop-types';
 import styles from './LoginForm.scss';
 
 type Props = {};
@@ -15,13 +16,7 @@ export default class LoginForm extends Component<Props> {
   props: Props;
 
   state = {
-    password: '',
-    username: '',
     showPassword: false
-  };
-
-  handleChange = prop => event => {
-    this.setState({ [prop]: event.target.value });
   };
 
   handleClickShowPassword = () => {
@@ -29,7 +24,8 @@ export default class LoginForm extends Component<Props> {
   };
 
   render() {
-    const { password, showPassword, username } = this.state;
+    const { showPassword } = this.state;
+    const { password, username, onUpdate } = this.props;
     return (
       <div className={styles.container} data-tid="container">
         <div>
@@ -39,7 +35,8 @@ export default class LoginForm extends Component<Props> {
               id="adornment-username"
               type="text"
               value={username}
-              onChange={this.handleChange('username')}
+              name="username"
+              onChange={onUpdate}
             />
           </FormControl>
         </div>
@@ -51,7 +48,8 @@ export default class LoginForm extends Component<Props> {
               id="adornment-password"
               type={showPassword ? 'text' : 'password'}
               value={password}
-              onChange={this.handleChange('password')}
+              name="password"
+              onChange={onUpdate}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -69,3 +67,14 @@ export default class LoginForm extends Component<Props> {
     );
   }
 }
+
+LoginForm.propTypes = {
+  password: PropTypes.string,
+  username: PropTypes.string,
+  onUpdate: PropTypes.func.isRequired
+};
+
+LoginForm.defaultProps = {
+  password: '',
+  username: ''
+};

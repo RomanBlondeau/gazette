@@ -13,7 +13,17 @@ type Props = {};
 export default class Login extends Component<Props> {
   props: Props;
 
+  state = {
+    password: '',
+    username: ''
+  };
+
+  onUpdate = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
+    const { username, password } = this.state;
     return (
       <div className={styles.container} data-tid="container">
         <Grid container spacing={24} className={styles.container}>
@@ -29,7 +39,11 @@ export default class Login extends Component<Props> {
             {/* Login Form */}
             <Grid container spacing={24} justify="center" alignItems="center">
               <Grid item xs={6} className={styles.rightContent}>
-                <LoginForm />
+                <LoginForm
+                  username={username}
+                  password={password}
+                  onUpdate={this.onUpdate}
+                />
 
                 <Grid
                   container
@@ -50,7 +64,7 @@ export default class Login extends Component<Props> {
 
                   {/* Login button */}
                   <Grid item xs={6}>
-                    <DoLogin />
+                    <DoLogin username={username} password={password} />
                   </Grid>
 
                   {/* sign up button */}
