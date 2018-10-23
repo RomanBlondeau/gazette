@@ -80,6 +80,7 @@ export default class SignUp extends Component<Props> {
                       lastName={lastName}
                       password={password}
                       username={username}
+                      confirmPassword={confirmPassword}
                     />
                   </Grid>
                 </Grid>
