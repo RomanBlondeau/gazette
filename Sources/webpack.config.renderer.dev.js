@@ -13,6 +13,7 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import merge from 'webpack-merge';
 import { spawn, execSync } from 'child_process';
+import Dotenv from 'dotenv-webpack';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
 
@@ -233,6 +234,10 @@ export default merge.smart(baseConfig, {
      */
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
+    }),
+
+    new Dotenv({
+      path: './.env' // Path to .env file (this is the default)
     }),
 
     new webpack.LoaderOptionsPlugin({
