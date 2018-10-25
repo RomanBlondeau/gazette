@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint flowtype-errors/show-errors: 0 */
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
@@ -6,6 +7,7 @@ import App from './containers/App';
 import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
+import ForgotPassword from './containers/ForgotPasswordPage';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -14,7 +16,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       localStorage.getItem('user') ? (
         <Component {...props} />
       ) : (
-        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        <Redirect
+          to={{ pathname: routes.LOGIN, state: { from: props.location } }}
+        />
       )
     }
   />
@@ -23,7 +27,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 export default () => (
   <App>
     <Switch>
-      <PrivateRoute path={routes.SIGNUP} component={SignUpPage} />
+      <Route path={routes.SIGNUP} component={SignUpPage} />
+      <Route path={routes.FORGOTPASSWORD} component={ForgotPassword} />
       <PrivateRoute path={routes.HOME} component={HomePage} />
       <Route path={routes.LOGIN} component={LoginPage} />
     </Switch>

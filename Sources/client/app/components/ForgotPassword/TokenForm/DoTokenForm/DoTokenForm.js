@@ -3,12 +3,12 @@ import React from 'react';
 import Button from '@material-ui/core/Button/Button';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styles from './DoLogin.scss';
-import userActions from '../../../actions/user.actions';
+import styles from './DoTokenForm.scss';
+import userActions from '../../../../actions/user.actions';
 
 type Props = {};
 
-class DoLogin extends React.Component {
+class DoTokenForm extends React.Component {
   props: Props;
 
   handleChange = () => {
@@ -27,7 +27,7 @@ class DoLogin extends React.Component {
           className={styles.button}
           onClick={this.handleChange}
         >
-          Login
+          Send me a recovery token
         </Button>
       </div>
     );
@@ -41,15 +41,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(DoLogin);
+export default connect(mapStateToProps)(DoTokenForm);
 
-DoLogin.propTypes = {
+DoTokenForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
   password: PropTypes.string,
   username: PropTypes.string
 };
 
-DoLogin.defaultProps = {
+DoTokenForm.defaultProps = {
   password: '',
   username: ''
 };

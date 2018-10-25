@@ -1,12 +1,13 @@
 // @flow
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid/Grid';
+import Button from '@material-ui/core/Button/Button';
 import styles from './Login.scss';
 import LoginForm from './LoginForm/LoginForm';
 import RememberMe from './RememberMe/RememberMe';
-import ForgotPassword from './ForgotPassword/ForgotPassword';
 import DoLogin from './DoLogin/DoLogin';
-import SignUp from './SignUp/SignUp';
+import history from '../../helpers/history';
+import routes from '../../constants/routes';
 
 type Props = {};
 
@@ -58,8 +59,10 @@ export default class Login extends Component<Props> {
                   </Grid>
 
                   {/* Forgot password button */}
-                  <Grid item xs={6}>
-                    <ForgotPassword />
+                  <Grid item xs={6} className={styles.forgotPasswordContainer}>
+                    <Button onClick={() => history.push(routes.FORGOTPASSWORD)}>
+                      Forgot password
+                    </Button>
                   </Grid>
 
                   {/* Login button */}
@@ -69,7 +72,13 @@ export default class Login extends Component<Props> {
 
                   {/* sign up button */}
                   <Grid item xs={6}>
-                    <SignUp />
+                    <Button
+                      variant="outlined"
+                      className={styles.signUpButton}
+                      onClick={() => history.push(routes.SIGNUP)}
+                    >
+                      Sign Up
+                    </Button>
                   </Grid>
                 </Grid>
               </Grid>
