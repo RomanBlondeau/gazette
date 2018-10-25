@@ -12,9 +12,16 @@ class DoSignUp extends React.Component {
   props: Props;
 
   handleChange = () => {
-    const { password, username, firstName, lastName, email, dispatch } = this.props;
+    const {
+      password,
+      username,
+      firstName,
+      lastName,
+      email,
+      dispatch
+    } = this.props;
     if (password && username && firstName && lastName && email) {
-      const user = {password, username, firstName, lastName, email};
+      const user = { password, username, firstName, lastName, email };
       dispatch(userActions.register(user));
     }
   };

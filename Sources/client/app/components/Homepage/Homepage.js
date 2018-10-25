@@ -1,20 +1,24 @@
 // @flow
 import React, { Component } from 'react';
 import styles from './Homepage.scss';
-import TopNavbar from "../Navbars/TopNavbar/TopNavbar";
-import SideNavbar from "../Navbars/SideNavbar/SideNavbar";
+import TopNavbar from '../Navbars/TopNavbar/TopNavbar';
+import SideNavbar from '../Navbars/SideNavbar/SideNavbar';
 
 type Props = {};
 
 export default class Homepage extends Component<Props> {
   props: Props;
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className={styles.container} data-tid="container">
-        <TopNavbar/>
-        <SideNavbar/>
+        <TopNavbar />
+        <SideNavbar />
       </div>
-      );
+    );
   }
 }
