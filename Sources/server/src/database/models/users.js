@@ -26,6 +26,16 @@ module.exports = () =>
         type: DataTypes.STRING(255),
         allowNull: false,
         field: 'password'
+      },
+      firstName: {
+        type: DataTypes.STRING(45),
+        allowNull: false,
+        field: 'firstName'
+      },
+      lastName: {
+        type: DataTypes.STRING(45),
+        allowNull: false,
+        field: 'lastName'
       }
     },
     {

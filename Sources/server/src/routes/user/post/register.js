@@ -5,14 +5,18 @@ const SHA256 = require('crypto-js/sha256');
 const User = require('../../../database/models/users')();
 
 router.post('/', async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, firstName, lastName } = req.body;
 
   if (!validator.isEmail(email) || password.length < 8 || password.length > 25) {
-    res.status(400).json({ message: 'Invalid arguments.' });
+    res.status(400).json({
+      message:
+        'Invalid arguments. Password need to be' +
+        ' at least 8 characters long. The email is maybe incorrect.'
+    });
   } else {
     User.findOrCreate({
       where: { email },
-      defaults: { password: SHA256(password).toString(), username }
+      defaults: { password: SHA256(password).toString(), username, firstName, lastName }
     })
       .spread((user, created) => {
         if (!created) {
@@ -27,4 +31,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-module.exports = router;
+module.exports = {
+  router,
+  required: ['username', 'email', 'password', 'firstName', 'lastName']
+};

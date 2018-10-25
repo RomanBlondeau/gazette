@@ -9,3 +9,5 @@ initApp(app, express);
 initDatabase();
 
 app.use(router);
+
+module.exports = app;
