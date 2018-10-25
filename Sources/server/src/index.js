@@ -1,3 +1,5 @@
+require('dotenv-json')();
+
 const express = require('express');
 const initApp = require('./app');
 const initDatabase = require('./database');

@@ -6,11 +6,11 @@ const should = chai.should(); // eslint-disable-line no-unused-vars
 
 chai.use(chaiHttp);
 
-describe('/POST user/login', () => {
+describe('/POST user/forgotPassword', () => {
   it('it should returns need all values in body', done => {
     chai
       .request(app)
-      .post('/user/login')
+      .post('/user/forgotPassword')
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
@@ -22,11 +22,8 @@ describe('/POST user/login', () => {
   it('it should returns not found', done => {
     chai
       .request(app)
-      .post('/user/login')
-      .send({
-        username: 'toto',
-        password: 'toto'
-      })
+      .post('/user/forgotPassword')
+      .send({ email: 'toto' })
       .end((err, res) => {
         res.should.have.status(401);
         res.body.should.be.a('object');

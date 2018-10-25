@@ -13,7 +13,13 @@ router.post('/', (req, res, next) => {
       if (!user) {
         res.status(401).json({ message: 'Not found.' });
       } else {
-        res.status(200).json({ message: 'ok', token: jwt.sign(user.id, config.secretOrKey) });
+        res.status(200).json({
+          token: jwt.sign(user.id, config.secretOrKey),
+          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email
+        });
       }
     })
     .catch(err => {

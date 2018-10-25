@@ -36,6 +36,11 @@ module.exports = () =>
         type: DataTypes.STRING(45),
         allowNull: false,
         field: 'lastName'
+      },
+      reset_password: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+        field: 'reset_password'
       }
     },
     {
