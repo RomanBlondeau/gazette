@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Service } from 'axios-middleware';
 import jwt from 'jwt-decode';
 
-const config = require('../../../config');
+const config = require('../../config/config');
 
 const token = localStorage.getItem('token');
 

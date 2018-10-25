@@ -1,16 +1,15 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button/Button';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './DoLogin.scss';
 import Alert from '../../Alert/Alert';
-
-const config = require('../../../../config');
+import userActions from '../../../actions/user.actions';
 
 type Props = {};
 
-export default class DoLogin extends Component<Props> {
+class DoLogin extends React.Component {
   props: Props;
 
   state = {
@@ -19,28 +18,10 @@ export default class DoLogin extends Component<Props> {
   };
 
   handleChange = () => {
-    const { username, password } = this.props;
-    console.log(username, password);
-    axios
-      .post(config.routes.auth.login, {
-        username,
-        password
-      })
-      .then(res => {
-        if (res.status === 200) {
-          alert('Connexion ok');
-        }
-        return res;
-      })
-      .catch(err => {
-        this.setState({
-          errorMessage:
-            err.response !== undefined
-              ? err.response.data.message
-              : 'An error occured, please try again.',
-          errorOpen: true
-        });
-      });
+    const { username, password, dispatch } = this.props;
+    if (username && password) {
+      dispatch(userActions.login(username, password));
+    }
   };
 
   handleErrorClose = () => {
@@ -70,7 +51,17 @@ export default class DoLogin extends Component<Props> {
   }
 }
 
+function mapStateToProps(state) {
+  const { loggingIn } = state.authentication;
+  return {
+    loggingIn
+  };
+}
+
+export default connect(mapStateToProps)(DoLogin);
+
 DoLogin.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   password: PropTypes.string,
   username: PropTypes.string
 };

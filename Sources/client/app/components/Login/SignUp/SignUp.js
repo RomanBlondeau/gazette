@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button/Button';
-import { Link } from 'react-router-dom';
 import routes from '../../../constants/routes';
 import styles from './SignUp.scss';
+import history from '../../../helpers/history';
 
 type Props = {};
 
@@ -12,20 +12,20 @@ export default class SignUp extends Component<Props> {
 
   state = {};
 
-  handleChange = () => {};
+  handleChange = () => {
+    history.push(routes.SIGNUP);
+  };
 
   render() {
     return (
       <div className={styles.container} data-tid="container">
-        <Link to={routes.SIGNUP}>
-          <Button
-            variant="outlined"
-            className={styles.button}
-            onClick={this.handleChange}
-          >
-            Sign Up
-          </Button>
-        </Link>
+        <Button
+          variant="outlined"
+          className={styles.button}
+          onClick={this.handleChange}
+        >
+          Sign Up
+        </Button>
       </div>
     );
   }
