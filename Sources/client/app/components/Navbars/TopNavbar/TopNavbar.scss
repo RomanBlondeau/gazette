@@ -1,12 +1,1 @@
 @import '../../../scss/color';
-
-.container {
-  display: flex;
-  flex-direction : row;
-  justify-content: center;
-  background-color: $secondary-color;
-
-  .nav {
-    display: flex;
-  }
-}
