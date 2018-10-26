@@ -8,8 +8,6 @@ export default class SideNavbar extends Component<Props> {
   props: Props;
 
   render() {
-    return (
-      <h1>Homepage</h1>
-    );
+    return <h1>Homepage</h1>;
   }
 }

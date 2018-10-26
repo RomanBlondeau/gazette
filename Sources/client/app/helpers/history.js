@@ -1,3 +1,3 @@
-import {history} from "../store/configureStore";
+import { history } from '../store/configureStore';
 
 export default history;
