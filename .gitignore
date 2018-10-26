@@ -5,5 +5,5 @@
 
 node_modules
 
-config
+server/config
 Sources/server/\.env\.json
