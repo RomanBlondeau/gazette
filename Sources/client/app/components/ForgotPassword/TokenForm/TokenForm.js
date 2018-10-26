@@ -4,9 +4,10 @@ import FormControl from '@material-ui/core/FormControl/FormControl';
 import InputLabel from '@material-ui/core/InputLabel/InputLabel';
 import Input from '@material-ui/core/Input/Input';
 import PropTypes from 'prop-types';
-import styles from './TokenForm.scss';
-import DoTokenForm from './DoTokenForm/DoTokenForm';
 import Grid from '@material-ui/core/Grid/Grid';
+import DoTokenForm from './DoTokenForm/DoTokenForm';
+import styles from './TokenForm.scss';
+import FormHelperText from '@material-ui/core/FormHelperText/FormHelperText';
 
 type Props = {};
 
@@ -30,7 +31,7 @@ export default class TokenForm extends Component<Props> {
           </FormControl>
         </Grid>
         <Grid item xs={12}>
-          <DoTokenForm />
+          <DoTokenForm email={email} />
         </Grid>
       </div>
     );

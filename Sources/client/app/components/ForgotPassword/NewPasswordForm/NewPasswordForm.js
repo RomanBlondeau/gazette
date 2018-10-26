@@ -24,6 +24,28 @@ export default class NewPasswordForm extends Component<Props> {
     passwordMatch: false
   };
 
+  checkPassword = e => {
+    const { password, confirmPassword } = this.props;
+    if (e.target.name === 'password') {
+      if (confirmPassword === e.target.value)
+        this.setState({ passwordMatch: true });
+      else this.setState({ passwordMatch: false });
+    } else if (e.target.name === 'confirmPassword') {
+      if (password === e.target.value) this.setState({ passwordMatch: true });
+      else this.setState({ passwordMatch: false });
+    }
+  };
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+
+  handleClickShowConfirmPassword = () => {
+    this.setState(state => ({
+      showConfirmPassword: !state.showConfirmPassword
+    }));
+  };
+
   render() {
     const { showPassword, showConfirmPassword, passwordMatch } = this.state;
     const { password, onUpdate, confirmPassword, token } = this.props;
@@ -65,6 +87,14 @@ export default class NewPasswordForm extends Component<Props> {
                 </InputAdornment>
               }
             />
+            {password.length < 8 && (
+              <FormHelperText
+                id="component-error-text"
+                className={styles.warning}
+              >
+                Password must be at least 8 characters long
+              </FormHelperText>
+            )}
           </FormControl>
         </Grid>
 
@@ -103,7 +133,11 @@ export default class NewPasswordForm extends Component<Props> {
             )}
           </FormControl>
 
-          <DoPasswordForm password={password} token={token} />
+          <DoPasswordForm
+            password={password}
+            confirmPassword={confirmPassword}
+            token={token}
+          />
         </Grid>
       </div>
     );

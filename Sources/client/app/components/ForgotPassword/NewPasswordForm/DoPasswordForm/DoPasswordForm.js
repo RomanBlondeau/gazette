@@ -18,6 +18,16 @@ class DoPasswordForm extends React.Component {
     }
   };
 
+  checkDisabled() {
+    const { password, token, confirmPassword } = this.props;
+    return !(
+      password !== '' &&
+      password.length >= 8 &&
+      token !== '' &&
+      confirmPassword !== ''
+    );
+  }
+
   render() {
     return (
       <div className={styles.container} data-tid="container">
@@ -26,6 +36,7 @@ class DoPasswordForm extends React.Component {
           color="primary"
           className={styles.button}
           onClick={this.handleChange}
+          disabled={this.checkDisabled()}
         >
           Update my password
         </Button>
@@ -46,10 +57,12 @@ export default connect(mapStateToProps)(DoPasswordForm);
 DoPasswordForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
   password: PropTypes.string,
+  confirmPassword: PropTypes.string,
   token: PropTypes.string
 };
 
 DoPasswordForm.defaultProps = {
   password: '',
+  confirmPassword: '',
   token: ''
 };

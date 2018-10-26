@@ -7,22 +7,25 @@ const userService = {
   login,
   logout,
   register,
+  forgotPassword,
+  resetPassword,
   getById,
   update,
   delete: _delete
 };
 
 function login(username, password) {
-  return axios.post(config.auth.login, {
-    username,
-    password
-  })
-  .then(user => {
-    if (user.data.token) {
-      localStorage.setItem('user', JSON.stringify(user.data));
-    }
-    return user.data;
-  });
+  return axios
+    .post(config.auth.login, {
+      username,
+      password
+    })
+    .then(user => {
+      if (user.data.token) {
+        localStorage.setItem('user', JSON.stringify(user.data));
+      }
+      return user.data;
+    });
 }
 
 function logout() {
@@ -31,31 +34,51 @@ function logout() {
 
 function register(email, username, password, firstName, lastName) {
   return axios.post(config.auth.register, {
-    email, username, password, firstName, lastName
-  })
+    email,
+    username,
+    password,
+    firstName,
+    lastName
+  });
+}
+
+function forgotPassword(email) {
+  return axios.post(config.auth.forgotPassword, {
+    email
+  });
+}
+
+function resetPassword(token, password) {
+  return axios.post(config.auth.register, {
+    resetToken: token,
+    newPassword: password
+  });
 }
 
 function getById(id) {
-  axios.put(`${id}`, {
-    headers: { ...authHeader(), 'Content-Type': 'application/json' },
-  })
-  .then(handleResponse);
+  axios
+    .put(`${id}`, {
+      headers: { ...authHeader(), 'Content-Type': 'application/json' }
+    })
+    .then(handleResponse);
 }
 
 function update(user) {
-  axios.put('', {
-    headers: { ...authHeader(), 'Content-Type': 'application/json' },
-    user
-  })
-  .then(handleResponse);
+  axios
+    .put('', {
+      headers: { ...authHeader(), 'Content-Type': 'application/json' },
+      user
+    })
+    .then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-  axios.put(`${id}`, {
-    headers: { ...authHeader(), 'Content-Type': 'application/json' },
-  })
-  .then(handleResponse);
+  axios
+    .put(`${id}`, {
+      headers: { ...authHeader(), 'Content-Type': 'application/json' }
+    })
+    .then(handleResponse);
 }
 
 function handleResponse(response) {

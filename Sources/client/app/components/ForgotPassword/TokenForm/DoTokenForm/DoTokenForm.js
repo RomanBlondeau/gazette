@@ -12,11 +12,17 @@ class DoTokenForm extends React.Component {
   props: Props;
 
   handleChange = () => {
-    const { username, password, dispatch } = this.props;
-    if (username && password) {
-      dispatch(userActions.login(username, password));
+    const { email, dispatch } = this.props;
+    if (email) {
+      const user = { email };
+      dispatch(userActions.forgotPassword(user));
     }
   };
+
+  checkDisabled() {
+    const { email } = this.props;
+    return !(email !== '');
+  }
 
   render() {
     return (
@@ -26,6 +32,7 @@ class DoTokenForm extends React.Component {
           color="primary"
           className={styles.button}
           onClick={this.handleChange}
+          disabled={this.checkDisabled()}
         >
           Send me a recovery token
         </Button>
@@ -45,11 +52,9 @@ export default connect(mapStateToProps)(DoTokenForm);
 
 DoTokenForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  password: PropTypes.string,
-  username: PropTypes.string
+  email: PropTypes.string
 };
 
 DoTokenForm.defaultProps = {
-  password: '',
-  username: ''
+  email: ''
 };

@@ -10,8 +10,18 @@ const userActions = {
   login,
   logout,
   register,
+  forgotPassword,
+  resetPassword,
   delete: _delete
 };
+
+function displayError(error) {
+  if (error.response.data.message === undefined) {
+    alert(error);
+  } else {
+    alert(`Error: ${error.response.data.message}`);
+  }
+}
 
 function login(username, password) {
   return dispatch => {
@@ -24,6 +34,7 @@ function login(username, password) {
       },
       error => {
         dispatch(failure(error.toString()));
+        displayError(error);
         dispatch(alertActions.error(error.toString()));
       }
     );
@@ -66,7 +77,7 @@ function register(user) {
       })
       .catch(error => {
         dispatch(failure(error.toString()));
-        alert(`Registration failed: ${error.response.data.message}`);
+        displayError(error);
         dispatch(alertActions.error(error.toString()));
       });
   };
@@ -79,6 +90,68 @@ function register(user) {
   }
   function failure(error) {
     return { type: userConstants.REGISTER_FAILURE, error };
+  }
+}
+
+function forgotPassword(user) {
+  return dispatch => {
+    dispatch(request(user));
+
+    userService
+      .forgotPassword(user.email)
+      .then(() => {
+        dispatch(success());
+        alert('Token sent, please check your email.');
+        history.push(routes.LOGIN);
+        dispatch(
+          alertActions.success('Reset password: ask for token successful')
+        );
+      })
+      .catch(error => {
+        dispatch(failure(error.toString()));
+        displayError(error);
+        dispatch(alertActions.error(error.toString()));
+      });
+  };
+
+  function request(user) {
+    return { type: userConstants.FORGOTPASSWORD_REQUEST, user };
+  }
+  function success(user) {
+    return { type: userConstants.FORGOTPASSWORD_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.FORGOTPASSWORD_FAILURE, error };
+  }
+}
+
+function resetPassword(user) {
+  return dispatch => {
+    dispatch(request(user));
+
+    userService
+      .forgotPassword(user.email)
+      .then(() => {
+        dispatch(success());
+        alert('Your password is reset.');
+        history.push(routes.LOGIN);
+        dispatch(alertActions.success('Reset password successful'));
+      })
+      .catch(error => {
+        dispatch(failure(error.toString()));
+        displayError(error);
+        dispatch(alertActions.error(error.toString()));
+      });
+  };
+
+  function request(user) {
+    return { type: userConstants.RESETPASSWORD_REQUEST, user };
+  }
+  function success(user) {
+    return { type: userConstants.RESETPASSWORD_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.RESETPASSWORD_FAILURE, error };
   }
 }
 

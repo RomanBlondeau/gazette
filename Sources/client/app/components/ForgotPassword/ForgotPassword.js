@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid/Grid';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button/Button';
 import routes from '../../constants/routes';
-import DoSignUp from '../SignUp/DoSignUp/DoSignUp';
 import styles from './ForgotPassword.scss';
 import TokenForm from './TokenForm/TokenForm';
 import NewPasswordForm from './NewPasswordForm/NewPasswordForm';
