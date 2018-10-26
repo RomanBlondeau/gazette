@@ -62,7 +62,6 @@ app.on('ready', async () => {
     await installExtensions();
   }
 
-
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
@@ -70,7 +69,7 @@ app.on('ready', async () => {
   });
   mainWindow.maximize();
   mainWindow.webContents.on('did-finish-load', () => {
-    const name = require('./package.json').name;
+    const { name } = require('./package.json');
     mainWindow.setTitle(name);
   });
 

@@ -2,7 +2,7 @@
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
-@import "~@fortawesome/fontawesome-free/css/all.css";
+@import '~@fortawesome/fontawesome-free/css/all.css';
 @import url('https://fonts.googleapis.com/css?family=Poiret+One|Roboto');
 
 html {
@@ -14,7 +14,7 @@ body {
   background-color: #fff;
   font-family: Roboto, Arial, Helvetica, Helvetica Neue, serif;
   overflow-y: hidden;
-  margin: 12px;
+  margin: 0;
   color: #2b2b2b;
 }
 
