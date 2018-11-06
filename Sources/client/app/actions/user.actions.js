@@ -6,15 +6,6 @@ import history from '../helpers/history';
 
 import routes from '../constants/routes.json';
 
-const userActions = {
-  login,
-  logout,
-  register,
-  forgotPassword,
-  resetPassword,
-  delete: _delete
-};
-
 function displayError(error) {
   if (error.response.data.message === undefined) {
     alert(error);
@@ -23,7 +14,21 @@ function displayError(error) {
   }
 }
 
+function togglePassword() {
+  return { type: userConstants.TOGGLE_PASSWORD };
+}
+
 function login(username, password) {
+  function request(user) {
+    return { type: userConstants.LOGIN_REQUEST, user };
+  }
+  function success(user) {
+    return { type: userConstants.LOGIN_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.LOGIN_FAILURE, error };
+  }
+
   return dispatch => {
     dispatch(request({ username }));
 
@@ -39,16 +44,6 @@ function login(username, password) {
       }
     );
   };
-
-  function request(user) {
-    return { type: userConstants.LOGIN_REQUEST, user };
-  }
-  function success(user) {
-    return { type: userConstants.LOGIN_SUCCESS, user };
-  }
-  function failure(error) {
-    return { type: userConstants.LOGIN_FAILURE, error };
-  }
 }
 
 function logout() {
@@ -58,6 +53,16 @@ function logout() {
 }
 
 function register(user) {
+  function request(user) {
+    return { type: userConstants.REGISTER_REQUEST, user };
+  }
+  function success(user) {
+    return { type: userConstants.REGISTER_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.REGISTER_FAILURE, error };
+  }
+
   return dispatch => {
     dispatch(request(user));
 
@@ -81,19 +86,23 @@ function register(user) {
         dispatch(alertActions.error(error.toString()));
       });
   };
+}
 
-  function request(user) {
-    return { type: userConstants.REGISTER_REQUEST, user };
-  }
-  function success(user) {
-    return { type: userConstants.REGISTER_SUCCESS, user };
-  }
-  function failure(error) {
-    return { type: userConstants.REGISTER_FAILURE, error };
-  }
+function update(user) {
+  return { type: userConstants.UPDATE, user };
 }
 
 function forgotPassword(user) {
+  function request(user) {
+    return { type: userConstants.FORGOTPASSWORD_REQUEST, user };
+  }
+  function success(user) {
+    return { type: userConstants.FORGOTPASSWORD_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.FORGOTPASSWORD_FAILURE, error };
+  }
+
   return dispatch => {
     dispatch(request(user));
 
@@ -113,19 +122,19 @@ function forgotPassword(user) {
         dispatch(alertActions.error(error.toString()));
       });
   };
-
-  function request(user) {
-    return { type: userConstants.FORGOTPASSWORD_REQUEST, user };
-  }
-  function success(user) {
-    return { type: userConstants.FORGOTPASSWORD_SUCCESS, user };
-  }
-  function failure(error) {
-    return { type: userConstants.FORGOTPASSWORD_FAILURE, error };
-  }
 }
 
 function resetPassword(user) {
+  function request(user) {
+    return { type: userConstants.RESETPASSWORD_REQUEST, user };
+  }
+  function success(user) {
+    return { type: userConstants.RESETPASSWORD_SUCCESS, user };
+  }
+  function failure(error) {
+    return { type: userConstants.RESETPASSWORD_FAILURE, error };
+  }
+
   return dispatch => {
     dispatch(request(user));
 
@@ -143,20 +152,20 @@ function resetPassword(user) {
         dispatch(alertActions.error(error.toString()));
       });
   };
-
-  function request(user) {
-    return { type: userConstants.RESETPASSWORD_REQUEST, user };
-  }
-  function success(user) {
-    return { type: userConstants.RESETPASSWORD_SUCCESS, user };
-  }
-  function failure(error) {
-    return { type: userConstants.RESETPASSWORD_FAILURE, error };
-  }
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
+  function request(id) {
+    return { type: userConstants.DELETE_REQUEST, id };
+  }
+  function success(id) {
+    return { type: userConstants.DELETE_SUCCESS, id };
+  }
+  function failure(id, error) {
+    return { type: userConstants.DELETE_FAILURE, id, error };
+  }
+
   return dispatch => {
     dispatch(request(id));
 
@@ -167,16 +176,17 @@ function _delete(id) {
         error => dispatch(failure(id, error.toString()))
       );
   };
-
-  function request(id) {
-    return { type: userConstants.DELETE_REQUEST, id };
-  }
-  function success(id) {
-    return { type: userConstants.DELETE_SUCCESS, id };
-  }
-  function failure(id, error) {
-    return { type: userConstants.DELETE_FAILURE, id, error };
-  }
 }
+
+const userActions = {
+  login,
+  logout,
+  register,
+  update,
+  togglePassword,
+  forgotPassword,
+  resetPassword,
+  delete: _delete
+};
 
 export default userActions;

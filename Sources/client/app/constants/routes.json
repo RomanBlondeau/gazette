@@ -1,4 +1,5 @@
 {
+  "CONTAINER": "/",
   "LOGIN": "/",
   "HOME": "/home",
   "SIGNUP": "/register",
