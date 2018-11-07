@@ -17,7 +17,7 @@ const styles = () => ({
   }
 });
 
-class HomePage extends Component<Props> {
+class CalendarPage extends Component<Props> {
   props: Props;
 
   render() {
@@ -25,15 +25,15 @@ class HomePage extends Component<Props> {
     return (
       <div className={classes.root}>
         <TopNavbar />
-        <SideNavbar active={routes.HOME} />
+        <SideNavbar active={routes.CALENDAR} />
         <Homepage />
       </div>
     );
   }
 }
 
-HomePage.propTypes = {
+CalendarPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(HomePage);
+export default withStyles(styles)(CalendarPage);

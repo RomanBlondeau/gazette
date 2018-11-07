@@ -1,24 +1,37 @@
 // @flow
 import React, { Component } from 'react';
-import styles from './Homepage.scss';
-import TopNavbar from '../Navbars/TopNavbar/TopNavbar';
-import SideNavbar from '../Navbars/SideNavbar/SideNavbar';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
+const styles = theme => ({
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: '#2E2E43',
+    padding: theme.spacing.unit * 3,
+    height: '100%'
+  }
+});
 
 type Props = {};
 
-export default class Homepage extends Component<Props> {
+class Homepage extends Component<Props> {
   props: Props;
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
+    const { classes } = this.props;
     return (
-      <div className={styles.container} data-tid="container">
-        <TopNavbar />
-        <SideNavbar />
-      </div>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <p>Lorem ipsum</p>
+      </main>
     );
   }
 }
+
+Homepage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Homepage);

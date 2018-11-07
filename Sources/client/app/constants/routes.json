@@ -3,5 +3,10 @@
   "LOGIN": "/",
   "HOME": "/home",
   "SIGNUP": "/register",
-  "FORGOTPASSWORD": "/forgotPassword"
+  "FORGOTPASSWORD": "/forgotPassword",
+  "CONTACTS": "/contacts",
+  "EDIT": "/edit",
+  "CALENDAR": "/calendar",
+  "HELP": "/help",
+  "SETTINGS": "/settings"
 }
