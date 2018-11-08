@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Homepage from '../components/Homepage/Homepage';
-import TopNavbar from '../components/Navbars/TopNavbar/TopNavbar';
-import SideNavbar from '../components/Navbars/SideNavbar/SideNavbar';
-import routes from '../constants/routes.json';
+import Homepage from '../../components/App/Homepage/Homepage';
+import TopNavbar from '../../components/App/Navbars/TopNavbar/TopNavbar';
+import SideNavbar from '../../components/App/Navbars/SideNavbar/SideNavbar';
+import routes from '../../constants/routes.json';
 
 type Props = {};
 
@@ -17,7 +17,7 @@ const styles = () => ({
   }
 });
 
-class HelpPage extends Component<Props> {
+class SettingsPage extends Component<Props> {
   props: Props;
 
   render() {
@@ -25,15 +25,15 @@ class HelpPage extends Component<Props> {
     return (
       <div className={classes.root}>
         <TopNavbar />
-        <SideNavbar active={routes.HELP} />
+        <SideNavbar active={routes.SETTINGS} />
         <Homepage />
       </div>
     );
   }
 }
 
-HelpPage.propTypes = {
+SettingsPage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(HelpPage);
+export default withStyles(styles)(SettingsPage);

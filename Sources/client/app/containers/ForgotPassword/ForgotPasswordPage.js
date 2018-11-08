@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import ForgotPassword from '../components/ForgotPassword/ForgotPassword';
+import ForgotPassword from '../../components/ForgotPassword/ForgotPassword';
 
 type Props = {};
 

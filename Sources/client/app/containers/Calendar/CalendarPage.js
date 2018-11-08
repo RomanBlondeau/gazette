@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Homepage from '../components/Homepage/Homepage';
-import TopNavbar from '../components/Navbars/TopNavbar/TopNavbar';
-import SideNavbar from '../components/Navbars/SideNavbar/SideNavbar';
-import routes from '../constants/routes.json';
+import Homepage from '../../components/App/Homepage/Homepage';
+import TopNavbar from '../../components/App/Navbars/TopNavbar/TopNavbar';
+import SideNavbar from '../../components/App/Navbars/SideNavbar/SideNavbar';
+import routes from '../../constants/routes.json';
 
 type Props = {};
 

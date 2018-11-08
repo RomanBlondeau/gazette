@@ -12,6 +12,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu/Menu';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
+import history from '../../../../helpers/history';
+import routes from '../../../../constants/routes.json';
 
 type Props = {};
 
@@ -54,6 +56,11 @@ class TopNavbar extends Component<Props> {
     this.setState({ anchorEl: null });
   };
 
+  handleMenuLogout = () => {
+    localStorage.removeItem('user');
+    history.push(routes.LOGIN);
+  };
+
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
@@ -68,6 +75,7 @@ class TopNavbar extends Component<Props> {
       >
         <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
         <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleMenuLogout}>Logout</MenuItem>
       </Menu>
     );
 

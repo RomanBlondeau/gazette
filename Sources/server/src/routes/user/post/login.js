@@ -14,7 +14,7 @@ router.post('/', (req, res, next) => {
         res.status(401).json({ message: 'Not found.' });
       } else {
         res.status(200).json({
-          token: jwt.sign(user.id, config.secretOrKey),
+          token: jwt.sign({ id: user.id }, config.secretOrKey),
           username: user.username,
           firstName: user.firstName,
           lastName: user.lastName,

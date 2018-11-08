@@ -14,8 +14,8 @@ import EventIcon from '@material-ui/icons/Event';
 import HelpIcon from '@material-ui/icons/Help';
 import SettingIcon from '@material-ui/icons/Settings';
 import UserIcon from '@material-ui/icons/AccountCircle';
-import routes from '../../../constants/routes.json';
-import history from '../../../helpers/history';
+import routes from '../../../../constants/routes.json';
+import history from '../../../../helpers/history';
 import css from './SideNavbar.scss';
 
 type Props = {};

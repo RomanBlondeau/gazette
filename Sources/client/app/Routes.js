@@ -1,48 +1,68 @@
 /* eslint-disable react/prop-types */
 /* eslint flowtype-errors/show-errors: 0 */
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import axios from 'axios';
+import { Switch, Route } from 'react-router';
 import routes from './constants/routes.json';
 import App from './containers/App';
-import HomePage from './containers/HomePage';
+import Homepage from './components/App/Homepage/Homepage';
 import LoginPage from './components/Login/Login';
-import SignUpPage from './containers/SignUpPage';
-import ForgotPassword from './containers/ForgotPasswordPage';
-import Container from './containers/Container';
-import ContactsPage from './containers/ContactsPage';
-import EditPage from './containers/EditPage';
-import CalendarPage from './containers/CalendarPage';
-import HelpPage from './containers/HelpPage';
-import SettingsPage from './containers/SettingsPage';
+import SignUpPage from './containers/SignUp/SignUpPage';
+import ForgotPassword from './containers/ForgotPassword/ForgotPasswordPage';
+import ContactsPage from './containers/Contacts/ContactsPage';
+import EditPage from './containers/Editor/EditPage';
+import CalendarPage from './containers/Calendar/CalendarPage';
+import HelpPage from './containers/Help/HelpPage';
+import SettingsPage from './containers/Settings/SettingsPage';
+import TopNavbar from './components/App/Navbars/TopNavbar/TopNavbar';
+import SideNavbar from './components/App/Navbars/SideNavbar/SideNavbar';
+import config from './config/api';
+import history from './helpers/history';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      localStorage.getItem('user') ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{ pathname: routes.LOGIN, state: { from: props.location } }}
-        />
-      )
-    }
-  />
-);
+const verifyLogin = () => {
+  try {
+    const tok = JSON.parse(localStorage.getItem('user')).token;
+    axios
+      .head(config.auth.verify, {
+        headers: { Authorization: `bearer ${tok}` }
+      })
+      .then(() => true)
+      .catch(() => {
+        localStorage.removeItem('user');
+        return false;
+      });
+  } catch (e) {
+    return false;
+  }
+};
+
+const defaultContainer = () => {
+  if (verifyLogin()) history.push(routes.HOME);
+  return (
+    <Switch>
+      {localStorage.getItem('user') !== null && (
+        <div>
+          <TopNavbar />
+          <SideNavbar active={routes.HOME} />
+        </div>
+      )}
+      <Route path={routes.HOME} component={Homepage} />
+      <Route path={routes.CONTACTS} component={ContactsPage} />
+      <Route path={routes.EDIT} component={EditPage} />
+      <Route path={routes.CALENDAR} component={CalendarPage} />
+      <Route path={routes.HELP} component={HelpPage} />
+      <Route path={routes.SETTINGS} component={SettingsPage} />
+      <Route path={routes.SIGNUP} component={SignUpPage} />
+      <Route path={routes.FORGOTPASSWORD} component={ForgotPassword} />
+      <Route path={routes.LOGIN} component={LoginPage} />
+    </Switch>
+  );
+};
 
 export default () => (
   <App>
     <Switch>
-      <Route path={routes.SIGNUP} component={SignUpPage} />
-      <Route path={routes.FORGOTPASSWORD} component={ForgotPassword} />
-      <PrivateRoute path={routes.HOME} component={HomePage} />
-      <Route path={routes.CONTAINER} component={LoginPage} />
-      <PrivateRoute path={routes.CONTACTS} component={ContactsPage} />
-      <PrivateRoute path={routes.EDIT} component={EditPage} />
-      <PrivateRoute path={routes.CALENDAR} component={CalendarPage} />
-      <PrivateRoute path={routes.HELP} component={HelpPage} />
-      <PrivateRoute path={routes.SETTINGS} component={SettingsPage} />
-      <Route path={routes.LOGIN} component={LoginPage} />
+      <Route component={defaultContainer} />
     </Switch>
   </App>
 );

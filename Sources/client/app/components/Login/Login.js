@@ -3,9 +3,9 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid/Grid';
 import Button from '@material-ui/core/Button/Button';
 import styles from './Login.scss';
-import LoginForm from '../../containers/LoginForm';
+import LoginForm from '../../containers/Login/LoginFormContainer';
 import RememberMe from './RememberMe/RememberMe';
-import DoLogin from '../../containers/DoLogin';
+import DoLogin from '../../containers/Login/DoLoginContainer';
 import history from '../../helpers/history';
 import routes from '../../constants/routes';
 
