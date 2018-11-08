@@ -2,10 +2,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Homepage from '../../components/App/Homepage/Homepage';
-import TopNavbar from '../../components/App/Navbars/TopNavbar/TopNavbar';
-import SideNavbar from '../../components/App/Navbars/SideNavbar/SideNavbar';
-import routes from '../../constants/routes.json';
 
 type Props = {};
 
@@ -17,23 +13,21 @@ const styles = () => ({
   }
 });
 
-class HelpPage extends Component<Props> {
+class Calendar extends Component<Props> {
   props: Props;
 
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <TopNavbar />
-        <SideNavbar active={routes.HELP} />
-        <Homepage />
+        <p>Calendar</p>
       </div>
     );
   }
 }
 
-HelpPage.propTypes = {
+Calendar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(HelpPage);
+export default withStyles(styles)(Calendar);

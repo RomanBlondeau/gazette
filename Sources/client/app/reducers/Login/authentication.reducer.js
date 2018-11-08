@@ -1,4 +1,4 @@
-import userConstants from '../constants/user.constants';
+import userConstants from '../../constants/user.constants';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user

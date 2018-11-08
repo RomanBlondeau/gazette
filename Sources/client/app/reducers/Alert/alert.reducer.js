@@ -1,4 +1,4 @@
-import alertConstants from '../constants/alert.constants';
+import alertConstants from '../../constants/alert.constants';
 
 function alert(state = {}, action) {
   switch (action.type) {

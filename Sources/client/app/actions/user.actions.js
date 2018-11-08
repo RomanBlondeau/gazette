@@ -7,7 +7,7 @@ import history from '../helpers/history';
 import routes from '../constants/routes.json';
 
 function displayError(error) {
-  if (error.response.data.message === undefined) {
+  if (error.response === undefined) {
     alert(error);
   } else {
     alert(`Error: ${error.response.data.message}`);
