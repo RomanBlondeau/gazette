@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import DoLogin from '../../components/Login/DoLogin/DoLogin';
-import userActions from '../../actions/user.actions';
+import userActions from '../../actions/User/user.actions';
 
 const mapStateToProps = state => ({
-  username: state.authentication.user.username,
-  password: state.authentication.user.password
+  username: state.form.username,
+  password: state.form.password
 });
 
 const mapDispatchToProps = dispatch => ({

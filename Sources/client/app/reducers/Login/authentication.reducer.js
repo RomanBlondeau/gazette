@@ -1,4 +1,4 @@
-import userConstants from '../../constants/user.constants';
+import userConstants from '../../constants/User/user.constants';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
@@ -32,19 +32,6 @@ function authentication(state = initialState, action) {
           username: '',
           password: ''
         }
-      };
-    case userConstants.UPDATE:
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          [action.user.target.name]: action.user.target.value
-        }
-      };
-    case userConstants.TOGGLE_PASSWORD:
-      return {
-        ...state,
-        showPassword: !state.showPassword
       };
     default:
       return state;

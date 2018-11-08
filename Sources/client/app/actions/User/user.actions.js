@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import userConstants from '../constants/user.constants';
-import userService from '../services/user.services';
-import alertActions from './alert.actions';
-import history from '../helpers/history';
+import userConstants from '../../constants/User/user.constants';
+import userService from '../../services/user.services';
+import alertActions from '../Alert/alert.actions';
+import history from '../../helpers/history';
 
-import routes from '../constants/routes.json';
+import routes from '../../constants/routes.json';
 
 function displayError(error) {
   if (error.response === undefined) {
@@ -12,10 +12,6 @@ function displayError(error) {
   } else {
     alert(`Error: ${error.response.data.message}`);
   }
-}
-
-function togglePassword() {
-  return { type: userConstants.TOGGLE_PASSWORD };
 }
 
 function login(username, password) {
@@ -30,7 +26,7 @@ function login(username, password) {
   }
 
   return dispatch => {
-    dispatch(request({ username }));
+    dispatch(request());
 
     userService.login(username, password).then(
       user => {
@@ -52,28 +48,22 @@ function logout() {
   return { type: userConstants.LOGOUT };
 }
 
-function register(user) {
-  function request(user) {
-    return { type: userConstants.REGISTER_REQUEST, user };
+function register(username, password, firstName, lastName, email) {
+  function request() {
+    return { type: userConstants.REGISTER_REQUEST };
   }
-  function success(user) {
-    return { type: userConstants.REGISTER_SUCCESS, user };
+  function success() {
+    return { type: userConstants.REGISTER_SUCCESS };
   }
   function failure(error) {
     return { type: userConstants.REGISTER_FAILURE, error };
   }
 
   return dispatch => {
-    dispatch(request(user));
+    dispatch(request());
 
     userService
-      .register(
-        user.email,
-        user.username,
-        user.password,
-        user.firstName,
-        user.lastName
-      )
+      .register(email, username, password, firstName, lastName)
       .then(() => {
         dispatch(success());
         alert('Registration successful');
@@ -86,10 +76,6 @@ function register(user) {
         dispatch(alertActions.error(error.toString()));
       });
   };
-}
-
-function update(user) {
-  return { type: userConstants.UPDATE, user };
 }
 
 function forgotPassword(user) {
@@ -182,8 +168,6 @@ const userActions = {
   login,
   logout,
   register,
-  update,
-  togglePassword,
   forgotPassword,
   resetPassword,
   delete: _delete

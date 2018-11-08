@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import FormControl from '@material-ui/core/FormControl/FormControl';
 import InputLabel from '@material-ui/core/InputLabel/InputLabel';
 import Input from '@material-ui/core/Input/Input';
@@ -12,171 +12,139 @@ import PropTypes from 'prop-types';
 import FormHelperText from '@material-ui/core/FormHelperText/FormHelperText';
 import styles from './SignUpForm.scss';
 
-type Props = {};
+const SignUpForm = ({
+  showPassword,
+  showConfirmPassword,
+  passwordMatch,
+  handleClickShowPassword,
+  handleClickShowConfirmPassword,
+  checkPassword,
+  password,
+  confirmPassword,
+  username,
+  firstName,
+  lastName,
+  email,
+  onUpdate
+}) => (
+  <div className={styles.container} data-tid="container">
+    <Grid container spacing={24} justify="center" alignItems="center">
+      <Grid item xs={6}>
+        <FormControl className={styles.form}>
+          <InputLabel htmlFor="adornment-first-name">First Name</InputLabel>
+          <Input
+            id="adornment-first-name"
+            type="text"
+            value={firstName}
+            name="firstName"
+            onChange={onUpdate}
+          />
+        </FormControl>
+      </Grid>
 
-export default class SignUpForm extends Component<Props> {
-  props: Props;
+      <Grid item xs={6}>
+        <FormControl className={styles.form}>
+          <InputLabel htmlFor="adornment-last-name">Last Name</InputLabel>
+          <Input
+            id="adornment-last-name"
+            type="text"
+            value={lastName}
+            name="lastName"
+            onChange={onUpdate}
+          />
+        </FormControl>
+      </Grid>
 
-  state = {
-    showPassword: false,
-    showConfirmPassword: false,
-    passwordMatch: false
-  };
+      <Grid item xs={12}>
+        <FormControl className={styles.form}>
+          <InputLabel htmlFor="adornment-username">Username</InputLabel>
+          <Input
+            id="adornment-username"
+            type="text"
+            value={username}
+            name="username"
+            onChange={onUpdate}
+          />
+        </FormControl>
+      </Grid>
 
-  handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
-  };
+      <Grid item xs={12}>
+        <FormControl className={styles.form}>
+          <InputLabel htmlFor="adornment-username">Email</InputLabel>
+          <Input
+            id="adornment-email"
+            type="text"
+            value={email}
+            name="email"
+            onChange={onUpdate}
+          />
+        </FormControl>
+      </Grid>
 
-  handleClickShowConfirmPassword = () => {
-    this.setState(state => ({
-      showConfirmPassword: !state.showConfirmPassword
-    }));
-  };
-
-  checkPassword = e => {
-    const { password, confirmPassword } = this.props;
-    if (e.target.name === 'password') {
-      if (confirmPassword === e.target.value)
-        this.setState({ passwordMatch: true });
-      else this.setState({ passwordMatch: false });
-    } else if (e.target.name === 'confirmPassword') {
-      if (password === e.target.value) this.setState({ passwordMatch: true });
-      else this.setState({ passwordMatch: false });
-    }
-  };
-
-  render() {
-    const { showPassword, showConfirmPassword, passwordMatch } = this.state;
-    const {
-      password,
-      confirmPassword,
-      username,
-      firstName,
-      lastName,
-      email,
-      onUpdate
-    } = this.props;
-    return (
-      <div className={styles.container} data-tid="container">
-        <Grid container spacing={24} justify="center" alignItems="center">
-          <Grid item xs={6}>
-            <FormControl className={styles.form}>
-              <InputLabel htmlFor="adornment-first-name">First Name</InputLabel>
-              <Input
-                id="adornment-first-name"
-                type="text"
-                value={firstName}
-                name="firstName"
-                onChange={onUpdate}
-              />
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={6}>
-            <FormControl className={styles.form}>
-              <InputLabel htmlFor="adornment-last-name">Last Name</InputLabel>
-              <Input
-                id="adornment-last-name"
-                type="text"
-                value={lastName}
-                name="lastName"
-                onChange={onUpdate}
-              />
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={12}>
-            <FormControl className={styles.form}>
-              <InputLabel htmlFor="adornment-username">Username</InputLabel>
-              <Input
-                id="adornment-username"
-                type="text"
-                value={username}
-                name="username"
-                onChange={onUpdate}
-              />
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={12}>
-            <FormControl className={styles.form}>
-              <InputLabel htmlFor="adornment-username">Email</InputLabel>
-              <Input
-                id="adornment-email"
-                type="text"
-                value={email}
-                name="email"
-                onChange={onUpdate}
-              />
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={12}>
-            <FormControl className={styles.form}>
-              <InputLabel htmlFor="adornment-password">Password</InputLabel>
-              <Input
-                id="adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                name="password"
-                onChange={e => {
-                  onUpdate(e);
-                  this.checkPassword(e);
-                }}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="Toggle password visibility"
-                      onClick={this.handleClickShowPassword}
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={12}>
-            <FormControl className={styles.form}>
-              <InputLabel htmlFor="adornment-confirm-password">
-                Confirm password
-              </InputLabel>
-              <Input
-                id="adornment-confirm-password"
-                type={showConfirmPassword ? 'text' : 'password'}
-                value={confirmPassword}
-                name="confirmPassword"
-                onChange={e => {
-                  onUpdate(e);
-                  this.checkPassword(e);
-                }}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="Toggle password visibility"
-                      onClick={this.handleClickShowConfirmPassword}
-                    >
-                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              {!passwordMatch && (
-                <FormHelperText
-                  id="component-error-text"
-                  className={styles.warning}
+      <Grid item xs={12}>
+        <FormControl className={styles.form}>
+          <InputLabel htmlFor="adornment-password">Password</InputLabel>
+          <Input
+            id="adornment-password"
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            name="password"
+            onChange={e => {
+              onUpdate(e);
+              checkPassword(e, password, confirmPassword);
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={handleClickShowPassword}
                 >
-                  Passwords must match
-                </FormHelperText>
-              )}
-            </FormControl>
-          </Grid>
-        </Grid>
-      </div>
-    );
-  }
-}
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+      </Grid>
+
+      <Grid item xs={12}>
+        <FormControl className={styles.form}>
+          <InputLabel htmlFor="adornment-confirm-password">
+            Confirm password
+          </InputLabel>
+          <Input
+            id="adornment-confirm-password"
+            type={showConfirmPassword ? 'text' : 'password'}
+            value={confirmPassword}
+            name="confirmPassword"
+            onChange={e => {
+              onUpdate(e);
+              checkPassword(e, password, confirmPassword);
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={handleClickShowConfirmPassword}
+                >
+                  {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          {!passwordMatch && (
+            <FormHelperText
+              id="component-error-text"
+              className={styles.warning}
+            >
+              Passwords must match
+            </FormHelperText>
+          )}
+        </FormControl>
+      </Grid>
+    </Grid>
+  </div>
+);
 
 SignUpForm.propTypes = {
   password: PropTypes.string,
@@ -185,6 +153,12 @@ SignUpForm.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   email: PropTypes.string,
+  showPassword: PropTypes.bool,
+  showConfirmPassword: PropTypes.bool,
+  passwordMatch: PropTypes.bool,
+  handleClickShowPassword: PropTypes.func.isRequired,
+  handleClickShowConfirmPassword: PropTypes.func.isRequired,
+  checkPassword: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired
 };
 
@@ -194,5 +168,10 @@ SignUpForm.defaultProps = {
   username: '',
   firstName: '',
   lastName: '',
-  email: ''
+  email: '',
+  showPassword: false,
+  showConfirmPassword: false,
+  passwordMatch: false
 };
+
+export default SignUpForm;

@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 import LoginForm from '../../components/Login/LoginForm/LoginForm';
-import userActions from '../../actions/user.actions';
+import formActions from '../../actions/Form/form.actions';
 
 const mapStateToProps = state => ({
-  username: state.authentication.user.username,
-  password: state.authentication.user.password,
-  showPassword: state.authentication.showPassword
+  username: state.form.username,
+  password: state.form.password,
+  showPassword: state.form.showPassword
 });
 
 const mapDispatchToProps = dispatch => ({
   onUpdate: e => {
-    dispatch(userActions.update(e));
+    dispatch(formActions.update(e));
   },
   handleClickShowPassword: () => {
-    dispatch(userActions.togglePassword());
+    dispatch(formActions.togglePassword());
   }
 });
 

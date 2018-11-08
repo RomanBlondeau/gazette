@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button/Button';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './DoPasswordForm.scss';
-import userActions from '../../../../actions/user.actions';
+import userActions from '../../../../actions/User/user.actions';
 
 type Props = {};
 
