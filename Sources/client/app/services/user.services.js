@@ -49,7 +49,7 @@ function forgotPassword(email) {
 }
 
 function resetPassword(token, password) {
-  return axios.post(config.auth.register, {
+  return axios.post(config.auth.resetPassword, {
     resetToken: token,
     newPassword: password
   });

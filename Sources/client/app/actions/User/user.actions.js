@@ -78,26 +78,25 @@ function register(username, password, firstName, lastName, email) {
   };
 }
 
-function forgotPassword(user) {
-  function request(user) {
-    return { type: userConstants.FORGOTPASSWORD_REQUEST, user };
+function forgotPassword(email) {
+  function request() {
+    return { type: userConstants.FORGOTPASSWORD_REQUEST };
   }
-  function success(user) {
-    return { type: userConstants.FORGOTPASSWORD_SUCCESS, user };
+  function success() {
+    return { type: userConstants.FORGOTPASSWORD_SUCCESS };
   }
   function failure(error) {
     return { type: userConstants.FORGOTPASSWORD_FAILURE, error };
   }
 
   return dispatch => {
-    dispatch(request(user));
+    dispatch(request());
 
     userService
-      .forgotPassword(user.email)
+      .forgotPassword(email)
       .then(() => {
         dispatch(success());
         alert('Token sent, please check your email.');
-        history.push(routes.LOGIN);
         dispatch(
           alertActions.success('Reset password: ask for token successful')
         );
@@ -110,22 +109,22 @@ function forgotPassword(user) {
   };
 }
 
-function resetPassword(user) {
-  function request(user) {
-    return { type: userConstants.RESETPASSWORD_REQUEST, user };
+function resetPassword(token, password) {
+  function request() {
+    return { type: userConstants.RESETPASSWORD_REQUEST };
   }
-  function success(user) {
-    return { type: userConstants.RESETPASSWORD_SUCCESS, user };
+  function success() {
+    return { type: userConstants.RESETPASSWORD_SUCCESS };
   }
   function failure(error) {
     return { type: userConstants.RESETPASSWORD_FAILURE, error };
   }
 
   return dispatch => {
-    dispatch(request(user));
+    dispatch(request());
 
     userService
-      .forgotPassword(user.email)
+      .resetPassword(token, password)
       .then(() => {
         dispatch(success());
         alert('Your password is reset.');

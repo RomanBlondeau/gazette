@@ -5,12 +5,16 @@ import registration from './SignUp/registration.reducer';
 import authentication from './Login/authentication.reducer';
 import alert from './Alert/alert.reducer';
 import form from './Form/form.reducer';
+import sendToken from './ForgotPassword/sendToken.reducer';
+import resetPassword from './ForgotPassword/resetPassword.reducer';
 
 const rootReducer = combineReducers({
   registration,
   authentication,
   alert,
   form,
+  sendToken,
+  resetPassword,
   router
 });
 

@@ -1,9 +1,17 @@
 import userConstants from '../../constants/User/user.constants';
 
-function registration(state = { disabled: true }, action) {
+const initialState = {
+  password: ''
+};
+
+function registration(state = initialState, action) {
   switch (action.type) {
-    case userConstants.REGISTER_REQUEST:
     case userConstants.REGISTER_SUCCESS:
+      return {
+        ...state,
+        password: ''
+      };
+    case userConstants.REGISTER_REQUEST:
     case userConstants.REGISTER_FAILURE:
     default:
       return state;

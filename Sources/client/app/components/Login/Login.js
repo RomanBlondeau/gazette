@@ -23,9 +23,7 @@ class Login extends React.Component {
         .catch(() => {
           localStorage.removeItem('user');
         });
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   }
 
   render() {

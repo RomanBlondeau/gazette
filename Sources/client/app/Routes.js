@@ -7,7 +7,7 @@ import App from './containers/App';
 import Homepage from './components/App/Homepage/Homepage';
 import LoginPage from './components/Login/Login';
 import SignUpPage from './components/SignUp/SignUp';
-import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import ForgotPasswordPage from './components/ForgotPassword/ForgotPassword';
 import ContactsPage from './components/App/Contacts/Contacts';
 import EditPage from './components/App/Editor/Edit';
 import CalendarPage from './components/App/Calendar/Calendar';
@@ -26,7 +26,7 @@ const defaultContainer = () => (
     <Route path={routes.HELP} component={HelpPage} />
     <Route path={routes.SETTINGS} component={SettingsPage} />
     <Route path={routes.SIGNUP} component={SignUpPage} />
-    <Route path={routes.FORGOTPASSWORD} component={ForgotPassword} />
+    <Route path={routes.FORGOTPASSWORD} component={ForgotPasswordPage} />
     <Route path={routes.LOGIN} component={LoginPage} />
   </Switch>
 );
