@@ -62,7 +62,13 @@ class TopNavbar extends Component<Props> {
   };
 
   render() {
-    const { classes } = this.props;
+    const {
+      classes,
+      firstName,
+      lastName,
+      notificationsCount,
+      notificationsMessage
+    } = this.props;
     const { anchorEl } = this.state;
     const isMenuOpen = Boolean(anchorEl);
     const renderMenu = (
@@ -87,11 +93,15 @@ class TopNavbar extends Component<Props> {
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <IconButton color="inherit">
-                <Badge badgeContent={1} color="secondary">
+                {notificationsCount > 0 ? (
+                  <Badge badgeContent={notificationsCount} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                ) : (
                   <NotificationsIcon />
-                </Badge>
+                )}
               </IconButton>
-              <p>John Doe</p>
+              <p className={css.item}>{`${firstName} ${lastName}`}</p>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
                 aria-haspopup="true"
@@ -110,7 +120,14 @@ class TopNavbar extends Component<Props> {
 }
 
 TopNavbar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string
+};
+
+TopNavbar.defaultProps = {
+  firstName: '',
+  lastName: ''
 };
 
 export default withStyles(styles)(TopNavbar);

@@ -22,8 +22,12 @@ class Login extends React.Component {
         .then(() => history.push(routes.HOME))
         .catch(() => {
           localStorage.removeItem('user');
+          history.push(routes.LOGIN);
         });
-    } catch (e) {}
+    } catch (e) {
+      localStorage.removeItem('user');
+      history.push(routes.LOGIN);
+    }
   }
 
   render() {

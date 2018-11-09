@@ -13,7 +13,7 @@ import EditPage from './components/App/Editor/Edit';
 import CalendarPage from './components/App/Calendar/Calendar';
 import HelpPage from './components/App/Help/Help';
 import SettingsPage from './components/App/Settings/Settings';
-import TopNavbar from './components/App/Navbars/TopNavbar/TopNavbar';
+import TopNavbar from './containers/Navbar/TopNavbarContainer';
 import SideNavbar from './components/App/Navbars/SideNavbar/SideNavbar';
 import history from './helpers/history';
 

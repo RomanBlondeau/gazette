@@ -34,6 +34,7 @@ const styles = theme => ({
     boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);'
   },
   toolbar: {
+    marginTop: 20,
     ...theme.mixins.toolbar
   },
   content: {
@@ -79,7 +80,7 @@ class SideNavbar extends Component<Props> {
         anchor="left"
       >
         <div className={classes.toolbar}>
-          <h3 className={css.mainTitle}>Gazette</h3>
+          <span className={css.mainTitle}>---- Gazette ----</span>
         </div>
         <List>
           {['Home', 'Contacts', 'Edit', 'Calendar', 'Help', 'Settings'].map(

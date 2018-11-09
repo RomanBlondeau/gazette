@@ -7,6 +7,7 @@ import alert from './Alert/alert.reducer';
 import form from './Form/form.reducer';
 import sendToken from './ForgotPassword/sendToken.reducer';
 import resetPassword from './ForgotPassword/resetPassword.reducer';
+import notifications from './Notifications/notifications.reducer';
 
 const rootReducer = combineReducers({
   registration,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   form,
   sendToken,
   resetPassword,
+  notifications,
   router
 });
 
