@@ -7,7 +7,7 @@ passport.use(
   new passportJWT.Strategy(
     {
       secretOrKey: config.secretOrKey,
-      jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeaderWithScheme('jwt')
+      jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken()
     },
     (jwtPayload, next) => {
       User.findOne({ where: { id: jwtPayload.id } }).then(user => {

@@ -1,30 +1,32 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid/Grid';
 import Button from '@material-ui/core/Button/Button';
 import styles from './Login.scss';
-import LoginForm from './LoginForm/LoginForm';
+import LoginForm from '../../containers/Login/LoginFormContainer';
 import RememberMe from './RememberMe/RememberMe';
-import DoLogin from './DoLogin/DoLogin';
+import DoLogin from '../../containers/Login/DoLoginContainer';
 import history from '../../helpers/history';
 import routes from '../../constants/routes';
+import axios from 'axios';
+import config from '../../config/api';
 
-type Props = {};
-
-export default class Login extends Component<Props> {
-  props: Props;
-
-  state = {
-    password: '',
-    username: ''
-  };
-
-  onUpdate = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+class Login extends React.Component {
+  componentDidMount() {
+    try {
+      const tok = JSON.parse(localStorage.getItem('user')).token;
+      axios
+        .head(config.auth.verify, {
+          headers: { Authorization: `bearer ${tok}` }
+        })
+        .then(() => history.push(routes.HOME))
+        .catch(() => {
+          localStorage.removeItem('user');
+        });
+    } catch (e) {}
+  }
 
   render() {
-    const { username, password } = this.state;
     return (
       <div className={styles.container} data-tid="container">
         <Grid container spacing={24} className={styles.container}>
@@ -40,11 +42,7 @@ export default class Login extends Component<Props> {
             {/* Login Form */}
             <Grid container spacing={24} justify="center" alignItems="center">
               <Grid item xs={6} className={styles.rightContent}>
-                <LoginForm
-                  username={username}
-                  password={password}
-                  onUpdate={this.onUpdate}
-                />
+                <LoginForm />
 
                 <Grid
                   container
@@ -67,7 +65,7 @@ export default class Login extends Component<Props> {
 
                   {/* Login button */}
                   <Grid item xs={6}>
-                    <DoLogin username={username} password={password} />
+                    <DoLogin />
                   </Grid>
 
                   {/* sign up button */}
@@ -89,3 +87,5 @@ export default class Login extends Component<Props> {
     );
   }
 }
+
+export default Login;

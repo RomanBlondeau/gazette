@@ -11,7 +11,8 @@ const api = {
     register: `${baseUrl}/user/register`,
     login: `${baseUrl}/user/login`,
     forgotPassword: `${baseUrl}/user/forgotPassword`,
-    resetPassword: `${baseUrl}/user/resetPassword`
+    resetPassword: `${baseUrl}/user/resetPassword`,
+    verify: `${baseUrl}/user/verify`
   }
 };
 

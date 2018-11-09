@@ -1,42 +1,32 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import FormControl from '@material-ui/core/FormControl/FormControl';
 import InputLabel from '@material-ui/core/InputLabel/InputLabel';
 import Input from '@material-ui/core/Input/Input';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid/Grid';
-import DoTokenForm from './DoTokenForm/DoTokenForm';
+import DoTokenForm from '../../../containers/ForgotPassword/DoTokenFormContainer';
 import styles from './TokenForm.scss';
-import FormHelperText from '@material-ui/core/FormHelperText/FormHelperText';
 
-type Props = {};
-
-export default class TokenForm extends Component<Props> {
-  props: Props;
-
-  render() {
-    const { email, onUpdate } = this.props;
-    return (
-      <div className={styles.container} data-tid="container">
-        <Grid item xs={12}>
-          <FormControl className={styles.form}>
-            <InputLabel htmlFor="adornment-email">Email</InputLabel>
-            <Input
-              id="adornment-email"
-              type="text"
-              value={email}
-              name="email"
-              onChange={onUpdate}
-            />
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <DoTokenForm email={email} />
-        </Grid>
-      </div>
-    );
-  }
-}
+const TokenForm = ({ email, onUpdate }) => (
+  <div className={styles.container} data-tid="container">
+    <Grid item xs={12}>
+      <FormControl className={styles.form}>
+        <InputLabel htmlFor="adornment-email">Email</InputLabel>
+        <Input
+          id="adornment-email"
+          type="text"
+          value={email}
+          name="email"
+          onChange={onUpdate}
+        />
+      </FormControl>
+    </Grid>
+    <Grid item xs={12}>
+      <DoTokenForm />
+    </Grid>
+  </div>
+);
 
 TokenForm.propTypes = {
   email: PropTypes.string,
@@ -46,3 +36,5 @@ TokenForm.propTypes = {
 TokenForm.defaultProps = {
   email: ''
 };
+
+export default TokenForm;

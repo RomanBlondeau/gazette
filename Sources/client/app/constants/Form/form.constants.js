@@ -1,0 +1,8 @@
+const formConstants = {
+  TOGGLE_PASSWORD: 'TOGGLE_PASSWORD',
+  TOGGLE_CONFIRM_PASSWORD: 'TOGGLE_CONFIRM_PASSWORD',
+  UPDATE: 'UPDATE',
+  PASSWORD_MATCH: 'PASSWORD_MATCH'
+};
+
+export default formConstants;

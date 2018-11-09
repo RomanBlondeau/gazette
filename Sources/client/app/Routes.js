@@ -1,46 +1,46 @@
 /* eslint-disable react/prop-types */
 /* eslint flowtype-errors/show-errors: 0 */
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router';
+import { Switch, Route } from 'react-router';
 import routes from './constants/routes.json';
 import App from './containers/App';
-import HomePage from './containers/HomePage';
-import LoginPage from './containers/LoginPage';
-import SignUpPage from './containers/SignUpPage';
-import ForgotPassword from './containers/ForgotPasswordPage';
-import ContactsPage from './containers/ContactsPage';
-import EditPage from './containers/EditPage';
-import CalendarPage from './containers/CalendarPage';
-import HelpPage from './containers/HelpPage';
-import SettingsPage from './containers/SettingsPage';
+import Homepage from './components/App/Homepage/Homepage';
+import LoginPage from './components/Login/Login';
+import SignUpPage from './components/SignUp/SignUp';
+import ForgotPasswordPage from './components/ForgotPassword/ForgotPassword';
+import ContactsPage from './components/App/Contacts/Contacts';
+import EditPage from './components/App/Editor/Edit';
+import CalendarPage from './components/App/Calendar/Calendar';
+import HelpPage from './components/App/Help/Help';
+import SettingsPage from './components/App/Settings/Settings';
+import TopNavbar from './components/App/Navbars/TopNavbar/TopNavbar';
+import SideNavbar from './components/App/Navbars/SideNavbar/SideNavbar';
+import history from './helpers/history';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      localStorage.getItem('user') ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{ pathname: routes.LOGIN, state: { from: props.location } }}
-        />
-      )
-    }
-  />
+const defaultContainer = () => (
+  <Switch>
+    <Route path={routes.HOME} component={Homepage} />
+    <Route path={routes.CONTACTS} component={ContactsPage} />
+    <Route path={routes.EDIT} component={EditPage} />
+    <Route path={routes.CALENDAR} component={CalendarPage} />
+    <Route path={routes.HELP} component={HelpPage} />
+    <Route path={routes.SETTINGS} component={SettingsPage} />
+    <Route path={routes.SIGNUP} component={SignUpPage} />
+    <Route path={routes.FORGOTPASSWORD} component={ForgotPasswordPage} />
+    <Route path={routes.LOGIN} component={LoginPage} />
+  </Switch>
 );
 
 export default () => (
   <App>
+    {localStorage.getItem('user') !== null && (
+      <div>
+        <TopNavbar />
+        <SideNavbar active={history.location.pathname} />
+      </div>
+    )}
     <Switch>
-      <Route path={routes.SIGNUP} component={SignUpPage} />
-      <Route path={routes.FORGOTPASSWORD} component={ForgotPassword} />
-      <PrivateRoute path={routes.HOME} component={HomePage} />
-      <PrivateRoute path={routes.CONTACTS} component={ContactsPage} />
-      <PrivateRoute path={routes.EDIT} component={EditPage} />
-      <PrivateRoute path={routes.CALENDAR} component={CalendarPage} />
-      <PrivateRoute path={routes.HELP} component={HelpPage} />
-      <PrivateRoute path={routes.SETTINGS} component={SettingsPage} />
-      <Route path={routes.LOGIN} component={LoginPage} />
+      <Route component={defaultContainer} />
     </Switch>
   </App>
 );
