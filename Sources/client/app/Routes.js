@@ -4,7 +4,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router';
 import routes from './constants/routes.json';
 import App from './containers/App';
-import Homepage from './components/App/Homepage/Homepage';
+import Homepage from './containers/Home/HomeContainer';
 import LoginPage from './components/Login/Login';
 import SignUpPage from './components/SignUp/SignUp';
 import ForgotPasswordPage from './components/ForgotPassword/ForgotPassword';

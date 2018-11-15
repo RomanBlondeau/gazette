@@ -16,12 +16,18 @@ const {
   router: resetPassword,
   required: resetPasswordRequired
 } = require('./user/post/resetPassword');
+const {
+  router: getByUserId
+  // required: getByUserIdRequired
+} = require('./projects/get/getByUserId');
 
 router.use('/user/register', bodyChecker(registerRequired), register);
 router.use('/user/login', bodyChecker(loginRequired), login);
 router.use('/user/forgotPassword', bodyChecker(forgotPasswordRequired), forgotPassword);
 router.use('/user/resetPassword', bodyChecker(resetPasswordRequired), resetPassword);
 router.use('/user/verify', passport.authenticate('jwt', { session: false }), verify);
+// TODO: check params
+router.use('/projects', passport.authenticate('jwt', { session: false }), getByUserId);
 
 router.use(errorHandler);
 

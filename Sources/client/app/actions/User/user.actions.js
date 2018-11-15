@@ -14,6 +14,33 @@ function displayError(error) {
   }
 }
 
+function getProjects(userId) {
+  function request(id) {
+    return { type: userConstants.GETALL_PROJECTS_REQUEST, id };
+  }
+  function success(id) {
+    return { type: userConstants.GETALL_PROJECTS_SUCCESS, id };
+  }
+  function failure(error) {
+    return { type: userConstants.GETALL_PROJECTS_FAILURE, error };
+  }
+
+  return dispatch => {
+    dispatch(request());
+
+    userService.getProjects(userId).then(
+      projects => {
+        dispatch(success(projects));
+      },
+      error => {
+        dispatch(failure(error.toString()));
+        displayError(error);
+        dispatch(alertActions.error(error.toString()));
+      }
+    );
+  };
+}
+
 function login(username, password) {
   function request(user) {
     return { type: userConstants.LOGIN_REQUEST, user };
@@ -31,6 +58,7 @@ function login(username, password) {
     userService.login(username, password).then(
       user => {
         dispatch(success(user));
+        dispatch(userActions.getProjects(user.id));
         history.push(routes.HOME);
       },
       error => {
@@ -169,7 +197,8 @@ const userActions = {
   register,
   forgotPassword,
   resetPassword,
-  delete: _delete
+  delete: _delete,
+  getProjects
 };
 
 export default userActions;

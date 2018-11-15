@@ -15,6 +15,7 @@ router.post('/', (req, res, next) => {
       } else {
         res.status(200).json({
           token: jwt.sign({ id: user.id }, config.secretOrKey),
+          id: user.id,
           username: user.username,
           firstName: user.firstName,
           lastName: user.lastName,

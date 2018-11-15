@@ -8,6 +8,7 @@ import form from './Form/form.reducer';
 import sendToken from './ForgotPassword/sendToken.reducer';
 import resetPassword from './ForgotPassword/resetPassword.reducer';
 import notifications from './Notifications/notifications.reducer';
+import projects from './Projects/projects.reducer';
 
 const rootReducer = combineReducers({
   registration,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   sendToken,
   resetPassword,
   notifications,
+  projects,
   router
 });
 

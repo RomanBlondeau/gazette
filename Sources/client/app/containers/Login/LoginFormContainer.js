@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onUpdate: e => {
+    e.persist();
     dispatch(formActions.update(e));
   },
   handleClickShowPassword: () => {

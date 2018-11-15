@@ -1,4 +1,18 @@
-.container {
-  background-color: #2E2E43;
-  height: 100%;
+@import '../../../app.global';
+
+.titleContainer {
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.mainButton {
+  margin: 10px;
+}
+
+.projectsContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
 }
