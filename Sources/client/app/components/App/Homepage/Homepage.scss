@@ -1,18 +1,8 @@
 @import '../../../app.global';
 
-.titleContainer {
-  justify-content: space-between;
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-}
-
-.mainButton {
-  margin: 10px;
-}
-
 .projectsContainer {
   margin-top: 40px;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }

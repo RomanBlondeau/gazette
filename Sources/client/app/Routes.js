@@ -9,7 +9,7 @@ import LoginPage from './components/Login/Login';
 import SignUpPage from './components/SignUp/SignUp';
 import ForgotPasswordPage from './components/ForgotPassword/ForgotPassword';
 import ContactsPage from './components/App/Contacts/Contacts';
-import EditPage from './components/App/Editor/Edit';
+import EditPage from './components/App/Editor/Editor';
 import CalendarPage from './components/App/Calendar/Calendar';
 import HelpPage from './components/App/Help/Help';
 import SettingsPage from './components/App/Settings/Settings';
