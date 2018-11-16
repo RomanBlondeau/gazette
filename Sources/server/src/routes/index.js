@@ -20,6 +20,7 @@ const {
   router: getByUserId
   // required: getByUserIdRequired
 } = require('./projects/get/getByUserId');
+const { router: newProject, required: newProjectRequired } = require('./projects/post/newProject');
 
 router.use('/user/register', bodyChecker(registerRequired), register);
 router.use('/user/login', bodyChecker(loginRequired), login);
@@ -28,6 +29,12 @@ router.use('/user/resetPassword', bodyChecker(resetPasswordRequired), resetPassw
 router.use('/user/verify', passport.authenticate('jwt', { session: false }), verify);
 // TODO: check params
 router.use('/projects', passport.authenticate('jwt', { session: false }), getByUserId);
+router.use(
+  '/projects/new',
+  passport.authenticate('jwt', { session: false }),
+  bodyChecker(newProjectRequired),
+  newProject
+);
 
 router.use(errorHandler);
 

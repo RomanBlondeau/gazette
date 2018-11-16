@@ -20,7 +20,7 @@ const styles = {
   media: {
     objectFit: 'cover'
   },
-  timestamp: {
+  creation: {
     color: '#43425D',
     textAlign: 'right',
     fontSize: '12px'
@@ -49,24 +49,21 @@ function mailCard(props) {
           <Typography
             gutterBottom
             component="span"
-            className={classes.timestamp}
+            className={classes.creation}
           >
-            {new Date(project.timestamp)
+            {new Date(project.creation)
+              .toJSON()
+              .slice(0, 10)
+              .replace(/-/g, '/')}
+          </Typography>
+          <Typography gutterBottom component="span" className={classes.update}>
+            {new Date(project.update)
               .toJSON()
               .slice(0, 10)
               .replace(/-/g, '/')}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => history.push(`${routes.EDIT}/${project.id}`)}
-        >
-          Accéder au projet
-        </Button>
-      </CardActions>
     </Card>
   );
 }
