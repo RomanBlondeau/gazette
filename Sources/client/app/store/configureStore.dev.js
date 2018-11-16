@@ -4,11 +4,12 @@ import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
+import reduce from 'lodash/reduce';
 import type { counterStateType } from '../reducers/types';
 
 const history = createHashHistory();
 
-const configureStore = (initialState?: counterStateType) => {
+const configureStore = data => {
   // Redux Configuration
   const middleware = [];
   const enhancers = [];
@@ -50,7 +51,7 @@ const configureStore = (initialState?: counterStateType) => {
   const enhancer = composeEnhancers(...enhancers);
 
   // Create Store
-  const store = createStore(rootReducer, initialState, enhancer);
+  const store = createStore(rootReducer, data, enhancer);
 
   if (module.hot) {
     module.hot.accept(

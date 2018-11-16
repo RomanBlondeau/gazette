@@ -17,6 +17,9 @@ const api = {
   projects: {
     getById: `${baseUrl}/projects`,
     newProject: `${baseUrl}/projects/new`
+  },
+  user: {
+    getAllData: `${baseUrl}/user`
   }
 };
 
