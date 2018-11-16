@@ -15,7 +15,8 @@ const api = {
     verify: `${baseUrl}/user/verify`
   },
   projects: {
-    getById: `${baseUrl}/projects`
+    getById: `${baseUrl}/projects`,
+    newProject: `${baseUrl}/projects/new`
   }
 };
 

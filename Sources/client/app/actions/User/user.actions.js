@@ -15,11 +15,11 @@ function displayError(error) {
 }
 
 function getProjects(userId) {
-  function request(id) {
-    return { type: userConstants.GETALL_PROJECTS_REQUEST, id };
+  function request() {
+    return { type: userConstants.GETALL_PROJECTS_REQUEST };
   }
-  function success(id) {
-    return { type: userConstants.GETALL_PROJECTS_SUCCESS, id };
+  function success(projects) {
+    return { type: userConstants.GETALL_PROJECTS_SUCCESS, projects };
   }
   function failure(error) {
     return { type: userConstants.GETALL_PROJECTS_FAILURE, error };
