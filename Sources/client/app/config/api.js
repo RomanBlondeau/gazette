@@ -13,6 +13,13 @@ const api = {
     forgotPassword: `${baseUrl}/user/forgotPassword`,
     resetPassword: `${baseUrl}/user/resetPassword`,
     verify: `${baseUrl}/user/verify`
+  },
+  projects: {
+    getById: `${baseUrl}/projects`,
+    newProject: `${baseUrl}/projects/new`
+  },
+  user: {
+    getAllData: `${baseUrl}/user`
   }
 };
 

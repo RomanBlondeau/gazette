@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import css from './Editor.scss';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -20,7 +21,12 @@ class Editor extends Component<Props> {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <p>Editor</p>
+        <div className={css.contentContainer}>
+          <div className={css.titleContainer}>
+            <h3>My creations</h3>
+            <button className={css.mainButton}>Create new email</button>
+          </div>
+        </div>
       </div>
     );
   }

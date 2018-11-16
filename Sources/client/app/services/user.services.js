@@ -11,7 +11,8 @@ const userService = {
   resetPassword,
   getById,
   update,
-  delete: _delete
+  delete: _delete,
+  getProjects
 };
 
 function login(username, password) {
@@ -91,6 +92,26 @@ function handleResponse(response) {
     return Promise.reject(error);
   }
   return response;
+}
+
+function getProjects(userId) {
+  return axios
+    .get(`${config.projects.getById}/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem('user')).token
+        }`
+      }
+    })
+    .then(projects => {
+      if (projects.data) {
+        localStorage.setItem(
+          'projects',
+          JSON.stringify(projects.data.projects)
+        );
+      }
+      return projects.data.projects;
+    });
 }
 
 export default userService;

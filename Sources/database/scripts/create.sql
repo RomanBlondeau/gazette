@@ -45,7 +45,8 @@ CREATE TABLE `projects` (
   `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `timestamp` datetime DEFAULT NULL,
+  `creation` datetime DEFAULT CURRENT_TIMESTAMP,
+  `update` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_user_id` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE

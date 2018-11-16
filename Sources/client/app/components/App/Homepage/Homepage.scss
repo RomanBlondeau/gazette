@@ -1,4 +1,8 @@
-.container {
-  background-color: #2E2E43;
-  height: 100%;
+@import '../../../app.global';
+
+.projectsContainer {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }

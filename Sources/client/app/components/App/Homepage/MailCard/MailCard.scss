@@ -1,0 +1,13 @@
+.cardContent {
+  transition: 0.2s;
+  min-width: 345px;
+}
+
+.cardContent:hover {
+  background-color: #2E2E43;
+  transition: 0.2s;
+}
+
+.cardContent:hover > .colorHover {
+  color: #fff!important;
+}
