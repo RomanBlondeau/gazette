@@ -1,2 +1,51 @@
 @import '../../../app.global';
 
+.interfaceContainer {
+  display: flex;
+  height: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.previsualisationContainer {
+  height: 100%;
+  width: 100%;
+  margin: 10px;
+  background-color: #43425D;
+  border-radius: 10px;
+}
+
+.previsualisation {
+  background-color: #43425D;
+  height: 95%;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.toolsContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.selector {
+  background-color: #43425D;
+  height: 100%;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.contacts {
+  background-color: #43425D;
+  height: 100%;
+  border-radius: 10px;
+  width: 100%;
+}
+

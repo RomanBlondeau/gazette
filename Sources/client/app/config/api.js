@@ -16,7 +16,14 @@ const api = {
   },
   projects: {
     getById: `${baseUrl}/projects`,
-    newProject: `${baseUrl}/projects/new`
+    newProject: `${baseUrl}/projects/new`,
+    deleteProject: `${baseUrl}/projects`,
+    send: `${baseUrl}/projects/send`
+  },
+  contacts: {
+    getByUserId: `${baseUrl}/contacts`,
+    newContact: `${baseUrl}/contacts/new`,
+    deleteContact: `${baseUrl}/contacts`
   },
   user: {
     getAllData: `${baseUrl}/user`

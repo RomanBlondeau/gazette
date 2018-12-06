@@ -5,6 +5,8 @@ import alertActions from '../Alert/alert.actions';
 import history from '../../helpers/history';
 
 import routes from '../../constants/routes.json';
+import projectsActions from '../Projects/projects.actions';
+import contactsActions from '../Contacts/contacts.actions';
 
 function displayError(error) {
   if (error.response === undefined) {
@@ -12,33 +14,6 @@ function displayError(error) {
   } else {
     alert(`Error: ${error.response.data.message}`);
   }
-}
-
-function getProjects(userId) {
-  function request() {
-    return { type: userConstants.GETALL_PROJECTS_REQUEST };
-  }
-  function success(projects) {
-    return { type: userConstants.GETALL_PROJECTS_SUCCESS, projects };
-  }
-  function failure(error) {
-    return { type: userConstants.GETALL_PROJECTS_FAILURE, error };
-  }
-
-  return dispatch => {
-    dispatch(request());
-
-    userService.getProjects(userId).then(
-      projects => {
-        dispatch(success(projects));
-      },
-      error => {
-        dispatch(failure(error.toString()));
-        displayError(error);
-        dispatch(alertActions.error(error.toString()));
-      }
-    );
-  };
 }
 
 function login(username, password) {
@@ -58,7 +33,8 @@ function login(username, password) {
     userService.login(username, password).then(
       user => {
         dispatch(success(user));
-        dispatch(userActions.getProjects(user.id));
+        dispatch(projectsActions.getProjects(user.id));
+        dispatch(contactsActions.getContacts(user.id));
         history.push(routes.HOME);
       },
       error => {
@@ -197,8 +173,7 @@ const userActions = {
   register,
   forgotPassword,
   resetPassword,
-  delete: _delete,
-  getProjects
+  delete: _delete
 };
 
 export default userActions;

@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 import css from './Homepage.scss';
 import { withStyles } from '@material-ui/core/styles';
 import MailCard from './MailCard/MailCard';
-import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal/Modal';
-import NewProject from '../../../containers/NewProjects/NewProjects';
+import NewProject from './NewProject/NewProject';
 
 type Props = {
-  classes: object
+  classes: object,
+  projects: array,
+  onCreate: func,
+  onDelete: func,
+  userId: number
 };
 
 const styles = theme => ({
@@ -56,7 +59,7 @@ class Homepage extends Component<Props> {
   };
 
   render() {
-    const { classes, projects } = this.props;
+    const { classes, projects, onCreate, userId, onDelete } = this.props;
     const { open } = this.state;
     return (
       <div className={classes.root}>
@@ -69,7 +72,11 @@ class Homepage extends Component<Props> {
           </div>
           <div className={css.projectsContainer}>
             {projects.map(project => (
-              <MailCard project={project} key={project.id} />
+              <MailCard
+                project={project}
+                key={project.id}
+                onDelete={onDelete}
+              />
             ))}
           </div>
 
@@ -80,7 +87,11 @@ class Homepage extends Component<Props> {
             onClose={this.handleClose}
           >
             <div style={getModalStyle()} className={classes.paper}>
-              <NewProject />
+              <NewProject
+                onCreate={onCreate}
+                userId={userId}
+                handleClose={this.handleClose}
+              />
             </div>
           </Modal>
         </div>
@@ -88,13 +99,5 @@ class Homepage extends Component<Props> {
     );
   }
 }
-
-Homepage.propTypes = {
-  projects: PropTypes.arrayOf(PropTypes.object)
-};
-
-Homepage.defaultProps = {
-  projects: []
-};
 
 export default withStyles(styles)(Homepage);

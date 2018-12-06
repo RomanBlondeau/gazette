@@ -30,12 +30,12 @@ module.exports = () =>
       creation: {
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: DataTypes.NOW
       },
       update: {
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+        defaultValue: DataTypes.NOW
       }
     },
     {

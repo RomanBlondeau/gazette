@@ -1,16 +1,18 @@
-/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import css from './MailCard.scss';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import history from '../../../../helpers/history';
-import routes from '../../../../constants/routes';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { Redirect } from 'react-router';
+import Dialog from '@material-ui/core/Dialog/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions/DialogActions';
 
 const styles = {
   card: {
@@ -22,55 +24,129 @@ const styles = {
   },
   creation: {
     color: '#43425D',
-    textAlign: 'right',
+    fontSize: '12px',
+    marginTop: 10
+  },
+  update: {
+    color: '#43425D',
     fontSize: '12px'
+  },
+  button: {
+    borderRadius: 17,
+    margin: 15,
+    padding: 0,
+    minWidth: 32,
+    float: 'right'
   }
 };
 
-function mailCard(props) {
-  const { classes, project } = props;
-  return (
-    <Card className={classes.card}>
-      <CardActionArea
-        onClick={() => history.push(`${routes.EDIT}/${project.id}`)}
-      >
-        <CardContent className={css.cardContent}>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="h2"
-            className={css.colorHover}
-          >
-            {project.name}
-          </Typography>
-          <Typography component="p" className={css.colorHover}>
-            {project.description}
-          </Typography>
-          <Typography
-            gutterBottom
-            component="span"
-            className={classes.creation}
-          >
-            {new Date(project.creation)
-              .toJSON()
-              .slice(0, 10)
-              .replace(/-/g, '/')}
-          </Typography>
-          <Typography gutterBottom component="span" className={classes.update}>
-            {new Date(project.update)
-              .toJSON()
-              .slice(0, 10)
-              .replace(/-/g, '/')}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-  );
-}
-
-mailCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  project: PropTypes.object.isRequired
+type Props = {
+  classes: object,
+  project: array,
+  onDelete: func
 };
+
+class mailCard extends React.Component {
+  props: Props;
+
+  state = {
+    redirect: false,
+    open: false
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    const { classes, project, onDelete } = this.props;
+    const { redirect, open } = this.state;
+    return (
+      <Card className={classes.card}>
+        {redirect === true && <Redirect to={`/edit/${project.id}`} />}
+        <CardActionArea>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            size="small"
+            onClick={() => this.handleClickOpen()}
+          >
+            <DeleteIcon className={css.icon} />
+          </Button>
+          <CardContent
+            className={css.cardContent}
+            onClick={() => this.setState({ redirect: true })}
+          >
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h2"
+              className={css.colorHover}
+            >
+              {project.name}
+            </Typography>
+            <Typography component="p" className={css.colorHover}>
+              {project.description}
+            </Typography>
+            <Typography
+              gutterBottom
+              component="span"
+              className={classes.creation}
+            >
+              {`Creation date : ${new Date(project.creation)
+                .toJSON()
+                .slice(0, 10)
+                .replace(/-/g, '/')}`}
+            </Typography>
+            <Typography
+              gutterBottom
+              component="span"
+              className={classes.update}
+            >
+              {`Last update : ${new Date(project.update)
+                .toJSON()
+                .slice(0, 10)
+                .replace(/-/g, '/')}`}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <Dialog
+          open={open}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {`Êtes-vous sûr de vouloir supprimer le projet ${project.name} ?`}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Cette opération est irréversible.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary" autofocus>
+              Annuler
+            </Button>
+            <Button
+              onClick={() => {
+                onDelete(project.id);
+                this.handleClose();
+              }}
+              color="secondary"
+            >
+              Supprimer
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Card>
+    );
+  }
+}
 
 export default withStyles(styles)(mailCard);

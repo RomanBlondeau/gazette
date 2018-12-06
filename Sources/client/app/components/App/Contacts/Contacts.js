@@ -1,9 +1,17 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import css from './Contacts.scss';
+import NewContact from '../../../containers/Contacts/NewContact/NewContactContainer';
+import ContactCard from './ContactCard/ContactCard';
 
-type Props = {};
+type Props = {
+  classes: object,
+  contacts: array,
+  onCreate: func,
+  onDelete: func,
+  userId: number
+};
 
 const styles = () => ({
   root: {
@@ -13,21 +21,55 @@ const styles = () => ({
   }
 });
 
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`
+  };
+}
+
 class Contacts extends Component<Props> {
   props: Props;
 
+  state = {
+    open: false
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   render() {
-    const { classes } = this.props;
+    const { classes, contacts, userId, onDelete } = this.props;
+    const { open } = this.state;
     return (
       <div className={classes.root}>
-        <p>Contacts</p>
+        <div className={css.contentContainer}>
+          <div className={css.titleContainer}>
+            <h3>My contacts</h3>
+            <NewContact />
+          </div>
+          <div className={css.contactsContainer}>
+            {contacts.map(contact => (
+              <ContactCard
+                contact={contact}
+                key={contact.id}
+                onDelete={onDelete}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
 }
-
-Contacts.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default withStyles(styles)(Contacts);

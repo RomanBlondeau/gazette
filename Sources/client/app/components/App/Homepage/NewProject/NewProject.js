@@ -3,9 +3,13 @@ import Typography from '@material-ui/core/Typography/Typography';
 import FormControl from '@material-ui/core/FormControl/FormControl';
 import InputLabel from '@material-ui/core/InputLabel/InputLabel';
 import Input from '@material-ui/core/Input/Input';
-import axios from 'axios';
-import config from '../../../../config/api';
 import css from './NewProject.scss';
+
+type Props = {
+  onCreate: func,
+  userId: number,
+  handleClose: func
+};
 
 class NewProject extends React.Component {
   props: Props;
@@ -22,22 +26,11 @@ class NewProject extends React.Component {
   };
 
   createProject = () => {
-    const { userId, onCreate } = this.props;
+    const { userId, onCreate, handleClose } = this.props;
     const { name, description } = this.state;
     const data = { userId, name, description };
-    axios
-      .post(`${config.projects.newProject}`, data, {
-        headers: {
-          Authorization: `Bearer ${
-            JSON.parse(localStorage.getItem('user')).token
-          }`
-        }
-      })
-      .then(() => {
-        onCreate(userId);
-        alert(`New project ${name} created successfully`);
-      })
-      .catch(err => alert(err));
+    onCreate(data);
+    handleClose();
   };
 
   render() {

@@ -57,7 +57,7 @@ class Login extends React.Component {
                 >
                   {/* Remember Me checkbox */}
                   <Grid item xs={6}>
-                    <RememberMe />
+                    {/*<RememberMe />*/}
                   </Grid>
 
                   {/* Forgot password button */}

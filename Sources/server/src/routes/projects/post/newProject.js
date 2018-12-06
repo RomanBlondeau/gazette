@@ -18,7 +18,7 @@ router.post('/', (req, res, next) => {
         if (!created) {
           res.status(400).json({ message: 'Already exist in database.' });
         } else {
-          res.status(200).json({ message: 'Success.' });
+          res.status(200).json({ project });
         }
       })
       .catch(err => {

@@ -4,7 +4,8 @@
   "SIGNUP": "/register",
   "FORGOTPASSWORD": "/forgotPassword",
   "CONTACTS": "/contacts",
-  "EDIT": "/edit",
+  "EDIT": "/edit/:projectId",
+  "SEND": "/send/:projectId",
   "CALENDAR": "/calendar",
   "HELP": "/help",
   "SETTINGS": "/settings"

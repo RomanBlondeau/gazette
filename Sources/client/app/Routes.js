@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint flowtype-errors/show-errors: 0 */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router';
 import routes from './constants/routes.json';
 import App from './containers/App';
@@ -8,8 +8,9 @@ import Homepage from './containers/Home/HomeContainer';
 import LoginPage from './components/Login/Login';
 import SignUpPage from './components/SignUp/SignUp';
 import ForgotPasswordPage from './components/ForgotPassword/ForgotPassword';
-import ContactsPage from './components/App/Contacts/Contacts';
-import EditPage from './components/App/Editor/Editor';
+import ContactsPage from './containers/Contacts/ContactsContainer';
+import EditPage from './containers/Editor/EditorContainer';
+import SendInterface from './containers/SendInterface/SendContainer';
 import CalendarPage from './components/App/Calendar/Calendar';
 import HelpPage from './components/App/Help/Help';
 import SettingsPage from './components/App/Settings/Settings';
@@ -22,6 +23,7 @@ const defaultContainer = () => (
     <Route path={routes.HOME} component={Homepage} />
     <Route path={routes.CONTACTS} component={ContactsPage} />
     <Route path={routes.EDIT} component={EditPage} />
+    <Route path={routes.SEND} component={SendInterface} />
     <Route path={routes.CALENDAR} component={CalendarPage} />
     <Route path={routes.HELP} component={HelpPage} />
     <Route path={routes.SETTINGS} component={SettingsPage} />
@@ -34,10 +36,10 @@ const defaultContainer = () => (
 export default () => (
   <App>
     {localStorage.getItem('user') !== null && (
-      <div>
+      <Fragment>
         <TopNavbar />
         <SideNavbar active={history.location.pathname} />
-      </div>
+      </Fragment>
     )}
     <Switch>
       <Route component={defaultContainer} />

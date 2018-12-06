@@ -9,6 +9,8 @@ import sendToken from './ForgotPassword/sendToken.reducer';
 import resetPassword from './ForgotPassword/resetPassword.reducer';
 import notifications from './Notifications/notifications.reducer';
 import projects from './Projects/projects.reducer';
+import send from './Send/send.reducer';
+import contacts from './Contacts/contacts.reducer';
 
 const rootReducer = combineReducers({
   registration,
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   resetPassword,
   notifications,
   projects,
+  send,
+  contacts,
   router
 });
 

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import css from './TopNavbar.scss';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,7 +17,7 @@ import routes from '../../../../constants/routes.json';
 
 type Props = {};
 
-const drawerWidth = 240;
+const drawerWidth = 210;
 
 const styles = theme => ({
   appBar: {
@@ -79,14 +79,12 @@ class TopNavbar extends Component<Props> {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
         <MenuItem onClick={this.handleMenuLogout}>Logout</MenuItem>
       </Menu>
     );
 
     return (
-      <div data-tid="container">
+      <Fragment>
         <CssBaseline />
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
@@ -114,7 +112,7 @@ class TopNavbar extends Component<Props> {
           </Toolbar>
         </AppBar>
         {renderMenu}
-      </div>
+      </Fragment>
     );
   }
 }

@@ -20,7 +20,7 @@ import css from './SideNavbar.scss';
 
 type Props = {};
 
-const drawerWidth = 240;
+const drawerWidth = 210;
 
 const styles = theme => ({
   drawer: {
@@ -54,7 +54,6 @@ class SideNavbar extends Component<Props> {
     pageList: [
       { icon: <HomeIcon />, page: routes.HOME },
       { icon: <UserIcon />, page: routes.CONTACTS },
-      { icon: <EmailIcon />, page: routes.EDIT },
       { icon: <EventIcon />, page: routes.CALENDAR },
       { icon: <HelpIcon />, page: routes.HELP },
       { icon: <SettingIcon />, page: routes.SETTINGS }
@@ -83,13 +82,16 @@ class SideNavbar extends Component<Props> {
           <span className={css.mainTitle}>---- Gazette ----</span>
         </div>
         <List>
-          {['Home', 'Contacts', 'Edit', 'Calendar', 'Help', 'Settings'].map(
+          {['Home', 'Contacts', 'Calendar', 'Help', 'Settings'].map(
             (text, index) => (
               <ListItem
                 button
                 key={text}
                 onClick={() => this.menuSwitchPage(index)}
-                selected={active === pageList[index].page}
+                selected={
+                  active.substring(0, 5) ===
+                  pageList[index].page.substring(0, 5)
+                }
               >
                 <ListItemIcon style={iconStyle}>
                   {pageList[index].icon}

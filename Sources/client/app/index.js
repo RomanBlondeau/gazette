@@ -30,10 +30,9 @@ const boot = ({ data = {} }) => {
   }
 };
 
-const id = JSON.parse(localStorage.getItem('user')).id;
-const token = JSON.parse(localStorage.getItem('user')).token;
-if (id === undefined) boot();
-else {
+if (localStorage.getItem('user') !== null) {
+  const id = JSON.parse(localStorage.getItem('user')).id;
+  const token = JSON.parse(localStorage.getItem('user')).token;
   axios
     .get(`${config.user.getAllData}/${id}`, {
       headers: {
@@ -45,4 +44,6 @@ else {
       console.log(e);
       throw new Error('Cannot start the app, please try again');
     });
+} else {
+  boot({});
 }

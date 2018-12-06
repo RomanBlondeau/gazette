@@ -11,3 +11,11 @@
 .cardContent:hover > .colorHover {
   color: #fff!important;
 }
+
+.icon {
+  transform: scale(0.7);
+}
+
+.cardContent:hover > .icon:hover {
+  background-color: #fff;
+}
