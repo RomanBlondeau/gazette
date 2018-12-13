@@ -65,6 +65,10 @@ a:hover {
   overflow: scroll;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .mainButton {
   background-color: #43425D;
   padding: 5px 15px;

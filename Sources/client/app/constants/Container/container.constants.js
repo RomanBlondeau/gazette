@@ -1,0 +1,9 @@
+const containerConstants = {
+  UPDATE_PLUGIN: 'UPDATE_PLUGIN',
+  DELETE_CONTAINER: 'DELETE_CONTAINER',
+  GET_FOCUS: 'GET_FOCUS',
+  ADD_PLUGIN_CONTAINER: 'ADD_PLUGIN_CONTAINER',
+  ADD_ROW: 'ADD_ROW'
+};
+
+export default containerConstants;

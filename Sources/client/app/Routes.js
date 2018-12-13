@@ -14,6 +14,7 @@ import SendInterface from './containers/SendInterface/SendContainer';
 import CalendarPage from './components/App/Calendar/Calendar';
 import HelpPage from './components/App/Help/Help';
 import SettingsPage from './components/App/Settings/Settings';
+import NewsletterInterface from './components/App/NewsletterInterface/NewsletterInterface';
 import TopNavbar from './containers/Navbar/TopNavbarContainer';
 import SideNavbar from './components/App/Navbars/SideNavbar/SideNavbar';
 import history from './helpers/history';
@@ -25,6 +26,7 @@ const defaultContainer = () => (
     <Route path={routes.EDIT} component={EditPage} />
     <Route path={routes.SEND} component={SendInterface} />
     <Route path={routes.CALENDAR} component={CalendarPage} />
+    <Route path={routes.NEWSLETTER} component={NewsletterInterface} />
     <Route path={routes.HELP} component={HelpPage} />
     <Route path={routes.SETTINGS} component={SettingsPage} />
     <Route path={routes.SIGNUP} component={SignUpPage} />

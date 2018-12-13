@@ -8,5 +8,6 @@
   "SEND": "/send/:projectId",
   "CALENDAR": "/calendar",
   "HELP": "/help",
-  "SETTINGS": "/settings"
+  "SETTINGS": "/settings",
+  "NEWSLETTER": "/newsletter"
 }

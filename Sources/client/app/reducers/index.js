@@ -11,6 +11,7 @@ import notifications from './Notifications/notifications.reducer';
 import projects from './Projects/projects.reducer';
 import send from './Send/send.reducer';
 import contacts from './Contacts/contacts.reducer';
+import container from './Container/container.reducer';
 
 const rootReducer = combineReducers({
   registration,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   projects,
   send,
   contacts,
+  container,
   router
 });
 
