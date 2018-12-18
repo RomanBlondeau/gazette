@@ -26,7 +26,8 @@ router.post('/', (req, res, next) => {
           type: row.type,
           value: row.options.value,
           order: rowOrder,
-          fk_id_project: projectId
+          fk_id_project: projectId,
+          textAlign: row.options.childStyle.textAlign
         },
         { uid: row.options.uid }
       );

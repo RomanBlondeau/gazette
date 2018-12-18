@@ -25,7 +25,10 @@ router.get('/:id', async (req, res, next) => {
               childStyle: {
                 height: el.dataValues.height === null ? '' : el.dataValues.height,
                 width: el.dataValues.width === null ? '' : el.dataValues.width,
-                padding: el.dataValues.padding === null ? '' : el.dataValues.padding
+                padding: el.dataValues.padding === null ? '' : el.dataValues.padding,
+                textAlign: row.dataValues.textAlign === null ? '' : row.dataValues.textAlign,
+                color: row.dataValues.color === null ? '' : row.dataValues.color,
+                fontSize: row.dataValues.fontSize === null ? '' : row.dataValues.fontSize
               }
             }
           });
@@ -43,7 +46,10 @@ router.get('/:id', async (req, res, next) => {
             childStyle: {
               height: '',
               width: '',
-              padding: ''
+              padding: '',
+              textAlign: row.dataValues.textAlign === null ? '' : row.dataValues.textAlign,
+              color: '',
+              fontSize: ''
             }
           }
         });
