@@ -39,6 +39,7 @@ const { router: newContact, required: newContactRequired } = require('./contacts
  * USER
  */
 const { router: getAllData } = require('./user/get/allData');
+const { router: deleteByUserId } = require('./user/delete/deleteByUserId');
 
 /**
  * ROUTER
@@ -51,6 +52,7 @@ router.use('/user/forgotPassword', bodyChecker(forgotPasswordRequired), forgotPa
 router.use('/user/resetPassword', bodyChecker(resetPasswordRequired), resetPassword);
 router.use('/user/verify', passport.authenticate('jwt', { session: false }), verify);
 router.use('/user', passport.authenticate('jwt', { session: false }), getAllData);
+router.use('/user', passport.authenticate('jwt', { session: false }), deleteByUserId);
 
 // PROJECTS
 router.use('/projects', passport.authenticate('jwt', { session: false }), projectsGetByUserId);

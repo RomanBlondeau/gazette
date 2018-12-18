@@ -1,5 +1,6 @@
 const hbs = require('nodemailer-express-handlebars');
 const nodemailer = require('nodemailer');
+const inlineBase64 = require('nodemailer-plugin-inline-base64');
 const path = require('path');
 
 const smtpTransport = nodemailer.createTransport({
@@ -17,5 +18,6 @@ const handlebarsOptions = {
 };
 
 smtpTransport.use('compile', hbs(handlebarsOptions));
+smtpTransport.use('compile', inlineBase64());
 
 module.exports = smtpTransport;

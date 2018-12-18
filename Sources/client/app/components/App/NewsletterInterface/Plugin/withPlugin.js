@@ -1,6 +1,7 @@
 import React from 'react';
 import { DragSource } from 'react-dnd';
 import { connect } from 'react-redux';
+import css from '../../Editor/Editor.scss';
 
 import containerAction from '../../../../actions/Container/container.actions';
 
@@ -44,7 +45,7 @@ function withPlugin(WrappedComponent, isTools = false) {
     ({ connectDragSource, options, dispatchToPlugin, plugins }) =>
       connectDragSource(
         isTools ? (
-          <div>
+          <div className={css.plugin}>
             <WrappedComponent {...options} />
           </div>
         ) : (

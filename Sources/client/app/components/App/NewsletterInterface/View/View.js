@@ -29,7 +29,10 @@ const viewTarget = {
           childStyle: {
             width: '',
             height: '',
-            padding: ''
+            padding: '',
+            fontSize: '',
+            color: '',
+            textAlign: ''
           }
         }
       });
@@ -48,7 +51,7 @@ const View = ({ connectDropTarget, isOver, rows }) =>
   connectDropTarget(
     <div
       className={css.previsualisation}
-      style={{ backgroundColor: isOver ? 'lightgrey' : 'white' }}
+      style={{ backgroundColor: isOver ? 'white' : 'white' }}
     >
       {rows.map(el => {
         const Plugin = pluginCreator(el.type);

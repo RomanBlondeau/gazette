@@ -26,7 +26,8 @@ const api = {
     deleteContact: `${baseUrl}/contacts`
   },
   user: {
-    getAllData: `${baseUrl}/user`
+    getAllData: `${baseUrl}/user`,
+    delete: `${baseUrl}/user`
   }
 };
 

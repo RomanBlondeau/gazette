@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const smtpTransport = require('../../../nodemailer');
+const { emailGenerator } = require('../../../emailGenerator/emailGenerator');
 
-async function sendMail(to, subject, body) {
+async function sendMail(to, subject, htmlBody) {
   await smtpTransport.sendMail({
     to,
     from: process.env.userGmail,
-    html: body,
+    html: htmlBody,
     subject
   });
 }
@@ -19,10 +20,12 @@ router.post('/', async (req, res) => {
     });
   } else {
     try {
-      await sendMail(to, subject, body);
-      res.status(200).json({ message: `Success.` });
+      const htmlBody = emailGenerator(body);
+      await sendMail(to, subject, htmlBody);
+      res.status(200).json({ message: `Success` });
     } catch (e) {
-      res.status(400).json({ message: `Not a valid mail` });
+      console.error('[Error trying to send mail]: ', e);
+      res.status(400).json({ message: `please check email adresses and try again.` });
     }
   }
 });

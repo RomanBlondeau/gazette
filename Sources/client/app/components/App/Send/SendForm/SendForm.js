@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import css from './SendForm.scss';
 import TextField from '@material-ui/core/TextField/TextField';
 import PropTypes from 'prop-types';
+import css from './SendForm.scss';
 
 const styles = theme => ({
   container: {
@@ -37,13 +37,13 @@ function validateSeveralEmails(emailList) {
 
 const SendForm = ({ to, object, onUpdate, classes }) => (
   <div>
-    <p style={{ color: 'grey', marginLeft: 15 }}>{`Paramètres d'envoi`}</p>
+    <p style={{ color: 'grey', marginLeft: 15 }}>Settings</p>
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
         error={object === ''}
         id="outlined-full-width"
-        label="Objet"
-        placeholder="Sujet du mail"
+        label="Subject"
+        placeholder="Subject"
         fullWidth
         margin="normal"
         variant="outlined"
@@ -57,8 +57,8 @@ const SendForm = ({ to, object, onUpdate, classes }) => (
       <TextField
         error={!validateSeveralEmails(to)}
         id="outlined-textarea"
-        label="Destinataires"
-        placeholder="Destinataires"
+        label="Recipients"
+        placeholder="Recipients"
         multiline
         fullWidth
         margin="normal"
@@ -66,7 +66,7 @@ const SendForm = ({ to, object, onUpdate, classes }) => (
         name="to"
         value={to}
         onChange={e => onUpdate(e)}
-        helperText="adresses mails séparés par une virgule"
+        helperText="email adresses separated by a comma"
         rows={3}
       />
     </form>

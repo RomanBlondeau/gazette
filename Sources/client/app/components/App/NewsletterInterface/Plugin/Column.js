@@ -28,7 +28,10 @@ const viewTarget = {
             childStyle: {
               width: '',
               height: '',
-              padding: ''
+              padding: '',
+              fontSize: '',
+              color: '',
+              textAlign: ''
             }
           }
         },
@@ -51,23 +54,31 @@ const Column = ({
   Plugin,
   isOver,
   pluginOptions,
-  isEmpty
-}) =>
-  connectDropTarget(
+  isEmpty,
+  rows,
+  rowId
+}) => {
+  const row = rows.find(el => el.options.uid === rowId);
+  return connectDropTarget(
     <td
       style={{
-        textAlign: 'center',
-        backgroundColor: isOver ? 'grey' : 'lightgrey',
+        textAlign:
+          row.options.childStyle.textAlign === undefined
+            ? 'center'
+            : row.options.childStyle.textAlign,
+        border: isOver ? 'dashed 2px #00ff94' : 'dashed 1px grey',
+        color: 'grey',
         marginRight: '5px',
         marginLeft: '5px'
       }}
     >
       {isEmpty ? (
-        <p>tozzi</p>
+        <p>Drop an element here</p>
       ) : (
         <Plugin key={pluginOptions.uid} options={{ ...pluginOptions }} />
       )}
     </td>
   );
+};
 
 export default DropTarget(Types.ITEM, viewTarget, collect)(Column);

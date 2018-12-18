@@ -8,7 +8,7 @@ import NewContact from '../../../../containers/Contacts/NewContact/NewContactCon
 const SendContacts = ({ contacts, onSelect }) => (
   <div>
     <div className={css.header}>
-      <p style={{ color: '#fff', marginLeft: 15 }}>{`Mes contacts`}</p>
+      <p style={{ color: '#fff', marginLeft: 15 }}>{`My contacts`}</p>
       <NewContact />
     </div>
     <div className={css.contactsContainer}>

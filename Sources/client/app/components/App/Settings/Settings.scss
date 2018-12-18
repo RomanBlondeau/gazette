@@ -1,0 +1,17 @@
+@import '../../../app.global';
+
+.deleteButton {
+  background-color: #e81740;
+  width: 125px;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 35px;
+  transition: 0.2s;
+  margin-top: 100px;
+}
+.deleteButton:hover {
+  background-color: #bd1436;
+  transition: 0.2s;
+}

@@ -1,6 +1,34 @@
-.container {
-  display: flex;
+.contacts {
+  background-color: #43425D;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  overflow: scroll;
   height: 100%;
-  width:100%;
-  background-color: #43425d;
+}
+
+.list {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  padding: 0!important;
+  width: 100%;
+}
+
+.sliderContainer {
+  display: flex;
+  align-content: center;
+  width: 90%;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.pluginSelected {
+  color: #43425D;
+  font-size: 16px;
+  font-weight: bold;
 }

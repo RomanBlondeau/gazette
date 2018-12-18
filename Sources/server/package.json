@@ -27,6 +27,8 @@
     "mysql2": "^1.6.1",
     "nodemailer": "^4.6.8",
     "nodemailer-express-handlebars": "^3.0.0",
+    "nodemailer-plugin-inline-base64": "^2.1.1",
+    "nodemon": "^1.18.8",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "sequelize": "^4.39.1",

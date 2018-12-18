@@ -88,7 +88,7 @@ class NewContact extends Component<Props> {
             this.handleOpen();
           }}
         >
-          {`Ajouter un contact`}
+          {`Add a new contact`}
         </button>
 
         <Modal

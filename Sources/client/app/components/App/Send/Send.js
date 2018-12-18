@@ -58,7 +58,7 @@ class Send extends Component<Props> {
   };
 
   handleButtonClick = () => {
-    const { sendInfo } = this.props;
+    const { sendInfo, email } = this.props;
     const { loading, success, error } = this.state;
     if (!loading) {
       this.setState(
@@ -70,7 +70,7 @@ class Send extends Component<Props> {
           const data = {
             to: sendInfo.to,
             subject: sendInfo.object,
-            body: 'test'
+            body: email
           };
           axios
             .post(`${config.projects.send}`, data, {
@@ -138,13 +138,13 @@ class Send extends Component<Props> {
                     <div className={css.validContainer}>
                       <Done className={classes.iconSuccess} />
                       <p className={css.successText}>
-                        Email envoyé avec succès à: {sendInfo.to}
+                        Email successfully sent to: {sendInfo.to}
                       </p>
                       <button
                         onClick={() => history.push(routes.HOME)}
                         className={css.backButton}
                       >
-                        Retour à la page projets
+                        Back to projects' page
                       </button>
                     </div>
                   ) : (

@@ -18,7 +18,7 @@ function getOption(targets, toUpdate, target) {
     options = {
       ...toUpdate.options,
       childStyle: {
-        ...toUpdate.childStyle,
+        ...toUpdate.options.childStyle,
         [targets[1]]: target.value
       }
     };
@@ -102,8 +102,6 @@ function container(state = { plugins: [], rows: [], id: undefined }, action) {
       return deletePlugin(state, action.plugin.options.uid);
     case containerConstants.ADD_PLUGIN_CONTAINER:
       return addPluginInContainer(state, action.toAdd);
-    case containerConstants.UPDATE_ROW:
-      return update(state, action.plugin);
     default:
       return state;
   }

@@ -55,7 +55,6 @@ class SideNavbar extends Component<Props> {
       { icon: <HomeIcon />, page: routes.HOME },
       { icon: <UserIcon />, page: routes.CONTACTS },
       { icon: <EventIcon />, page: routes.CALENDAR },
-      { icon: <HelpIcon />, page: routes.HELP },
       { icon: <SettingIcon />, page: routes.SETTINGS }
     ]
   };
@@ -82,7 +81,7 @@ class SideNavbar extends Component<Props> {
           <span className={css.mainTitle}>---- Gazette ----</span>
         </div>
         <List>
-          {['Home', 'Contacts', 'Calendar', 'Help', 'Settings'].map(
+          {['Home', 'Contacts', 'Calendar', 'Settings'].map(
             (text, index) => (
               <ListItem
                 button

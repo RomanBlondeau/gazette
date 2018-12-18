@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
-import Send from '../../components/App/Send/Send';
+import Settings from '../../components/App/Settings/Settings';
 
 const mapStateToProps = state => ({
-  projects: state.projects,
-  sendInfo: state.send,
-  email: state.container
+  user: state.authentication.user,
 });
 
 const mapDispatchToProps = () => ({});
@@ -12,6 +10,6 @@ const mapDispatchToProps = () => ({});
 const VisibleDoLogin = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Send);
+)(Settings);
 
 export default VisibleDoLogin;
