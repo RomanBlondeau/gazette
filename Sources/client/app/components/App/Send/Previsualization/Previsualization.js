@@ -1,15 +1,4 @@
-function generateHeader() {
-  return (
-    '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">' +
-    '<html xmlns="http://www.w3.org/1999/xhtml">' +
-    '<head>' +
-    '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' +
-    '<meta name="viewport" content="width=device-width, initial-scale=1.0" />' +
-    '<title>email</title>' +
-    '<style type="text/css"></style>' +
-    '</head>'
-  );
-}
+import React from 'react';
 
 const pluginType = [
   {
@@ -22,16 +11,13 @@ const pluginType = [
             childStyle[obj]
           }; `;
       });
-      const v = value.replace(/\n/g, '<br />');
-      return `<p style="${style}">${v}</p>`;
+      value = value.replace(/\n/g, '<br />');
+      return `<p style="${style}">${value}</p>`;
     }
   },
   {
     type: 'Link',
-    func: ({ value, href }) => {
-      const v = value.replace(/\n/g, '<br />');
-      return `<a href="${href}">${v}</a>`;
-    }
+    func: ({ value, href }) => `<a href="${href}">${value}</a>`
   },
   {
     type: 'Image',
@@ -49,8 +35,8 @@ const pluginType = [
 ];
 
 function generateBody(container) {
-  let body = `<body style="margin:0; padding:0;"><div style="width:100% !important; max-width: 624px; 
-background: #fff; margin: 0 auto; padding: 0; text-align: center;">`;
+  let body = `<table style="margin:0; padding:0;"><div style="width:100% !important; max-width: 624px; 
+  background: #fff; margin: 0 auto; padding: 0; text-align: center;">`;
 
   container.rows.forEach(row => {
     body += `<table width="100%"><tr>`;
@@ -71,17 +57,15 @@ background: #fff; margin: 0 auto; padding: 0; text-align: center;">`;
     body += `</tr></table>`;
   });
 
-  body += '</div></body></html>';
+  body += '</div></table>';
   return body;
 }
 
-function emailGenerator(container) {
+const Previsualization = ({ container }) => {
   let html = '';
-  html += generateHeader();
   html += generateBody(container);
-  return html;
+
+  return <div style={{ width: '100%', backgroundColor: '#fff', borderRadius: '5px', color: 'black' }} dangerouslySetInnerHTML={{__html: html}} />;
 }
 
-module.exports = {
-  emailGenerator
-};
+export default Previsualization;

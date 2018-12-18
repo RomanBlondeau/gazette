@@ -21,12 +21,14 @@
   margin: 10px;
   background-color: $secondary-color;
   border-radius: 10px;
+  overflow: scroll;
 }
 
 .previsualisation {
   background-color: $secondary-color;
   border-radius: 10px;
   min-height: 764px;
+  padding: 10px;
 }
 
 .toolsContainer {

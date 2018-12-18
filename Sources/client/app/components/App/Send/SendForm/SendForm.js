@@ -38,6 +38,7 @@ function validateSeveralEmails(emailList) {
 const SendForm = ({ to, object, onUpdate, classes }) => (
   <div>
     <p style={{ color: 'grey', marginLeft: 15 }}>Settings</p>
+    <h5 style={{ textAlign: 'center', color: '#353535' }}>Email will be sent with gazette's own email adress</h5>
     <form className={classes.container} noValidate autoComplete="off">
       <TextField
         error={object === ''}
@@ -67,7 +68,7 @@ const SendForm = ({ to, object, onUpdate, classes }) => (
         value={to}
         onChange={e => onUpdate(e)}
         helperText="email adresses separated by a comma"
-        rows={3}
+        rows={2}
       />
     </form>
   </div>

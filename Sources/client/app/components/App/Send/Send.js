@@ -2,18 +2,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import css from './Send.scss';
-import history from '../../../helpers/history';
-import SendFormContainer from '../../../containers/SendInterface/SendForm/SendFormContainer';
-import SendContactsContainer from '../../../containers/SendInterface/SendContacts/SendContactsContainer';
 import Dialog from '@material-ui/core/Dialog/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle/DialogTitle';
 import Done from '@material-ui/icons/Done';
 import Error from '@material-ui/icons/Error';
 import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
-import routes from '../../../constants/routes.json';
 import axios from 'axios';
 import config from '../../../config/api';
+import Previsualization from './Previsualization/Previsualization';
+import css from './Send.scss';
+import history from '../../../helpers/history';
+import SendFormContainer from '../../../containers/SendInterface/SendForm/SendFormContainer';
+import SendContactsContainer from '../../../containers/SendInterface/SendContacts/SendContactsContainer';
+import routes from '../../../constants/routes.json';
 
 type Props = {};
 
@@ -99,7 +100,7 @@ class Send extends Component<Props> {
   };
 
   render() {
-    const { classes, sendInfo } = this.props;
+    const { classes, sendInfo, email } = this.props;
     const { open, loading, success, error } = this.state;
     const project = this.props.projects.find(
       el => el.id === parseInt(this.props.match.params.projectId, 10)
@@ -162,7 +163,9 @@ class Send extends Component<Props> {
 
           <div className={css.interfaceContainer}>
             <div className={css.previsualisationContainer}>
-              <div className={css.previsualisation} />
+              <div className={css.previsualisation}>
+                <Previsualization container={email} />
+              </div>
             </div>
             <div className={css.toolsContainer}>
               <div className={css.selector}>
