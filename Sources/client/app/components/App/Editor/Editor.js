@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+
 import css from './Editor.scss';
 import history from '../../../helpers/history';
 import routes from '../../../constants/routes.json';
@@ -9,7 +10,8 @@ import NewsletterInterface from '../NewsletterInterface/NewsletterInterface';
 type Props = {
   classes: object,
   projects: array,
-  match: object
+  match: object,
+  addProjectId: func
 };
 
 const styles = () => ({
@@ -23,11 +25,31 @@ const styles = () => ({
 class Editor extends Component<Props> {
   props: Props;
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      project: {
+        name: 'lorem',
+        id: '0'
+      }
+    };
+  }
+
+  componentDidMount() {
+    const { addProjectId, match, projects } = this.props;
+    const projectId = parseInt(match.params.projectId, 10);
+
+    this.setState({
+      project: projects.find(el => el.id === projectId)
+    });
+    addProjectId(projectId);
+  }
+
   render() {
-    const { classes, projects, match } = this.props;
-    const project = projects.find(
-      el => el.id === parseInt(match.params.projectId, 10)
-    );
+    const { classes } = this.props;
+    const { project } = this.state;
+
     return (
       <div className={classes.root}>
         <div className={css.contentContainer}>

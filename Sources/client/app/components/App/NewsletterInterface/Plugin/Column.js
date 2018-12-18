@@ -11,8 +11,6 @@ const viewTarget = {
     const item = monitor.getItem();
     const rowUpdate = rows.find(el => el.options.uid === rowId);
 
-    console.log(props);
-    console.table(item);
     if (item.options.uid === undefined && item.options.type !== '_') {
       update(
         {

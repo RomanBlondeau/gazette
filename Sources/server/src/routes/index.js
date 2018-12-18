@@ -27,6 +27,8 @@ const { router: projectsGetByUserId } = require('./projects/get/getByUserId');
 const { router: newProject, required: newProjectRequired } = require('./projects/post/newProject');
 const { router: projectsDeleteByProjectId } = require('./projects/delete/deleteByProjectId');
 const { router: sendProject, required: sendProjectRequired } = require('./projects/post/send');
+const { router: save, required: saveRequired } = require('./projects/post/save');
+const { router: getProject } = require('./projects/get/getProject');
 
 /**
  * CONTACTS
@@ -72,6 +74,12 @@ router.use(
   bodyChecker(sendProjectRequired),
   sendProject
 );
+router.use(
+  '/projects/save',
+  [passport.authenticate('jwt', { session: false }), bodyChecker(saveRequired)],
+  save
+);
+router.use('/projects/data/', passport.authenticate('jwt', { session: false }), getProject);
 
 // CONTACTS
 router.use('/contacts', passport.authenticate('jwt', { session: false }), contactsGetByUserId);

@@ -18,7 +18,8 @@ const api = {
     getById: `${baseUrl}/projects`,
     newProject: `${baseUrl}/projects/new`,
     deleteProject: `${baseUrl}/projects`,
-    send: `${baseUrl}/projects/send`
+    send: `${baseUrl}/projects/send`,
+    save: `${baseUrl}/projects/save`
   },
   contacts: {
     getByUserId: `${baseUrl}/contacts`,
