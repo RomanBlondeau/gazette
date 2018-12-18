@@ -34,6 +34,10 @@ module.exports = () =>
           model: 'projects',
           key: 'id'
         }
+      },
+      textAlign: {
+        type: DataTypes.STRING(45),
+        allowNull: true
       }
     },
     {

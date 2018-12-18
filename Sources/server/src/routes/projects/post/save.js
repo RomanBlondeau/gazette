@@ -10,16 +10,16 @@ function updateOrCreate(Model, value, condition) {
 }
 
 function deleteProjectData(projectId) {
-  return Rows.destroy({ where: { fk_id_project: projectId } }).then(res => res);
+  return Rows.destroy({ where: { fk_id_project: projectId } });
 }
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   const { container, projectId } = req.body;
 
   try {
-    deleteProjectData(projectId);
-    container.rows.forEach((row, rowOrder) => {
-      updateOrCreate(
+    await deleteProjectData(projectId);
+    const data = await container.rows.map(async (row, rowOrder) => {
+      await updateOrCreate(
         Rows,
         {
           uid: row.options.uid,
@@ -31,9 +31,9 @@ router.post('/', (req, res, next) => {
         },
         { uid: row.options.uid }
       );
-      row.options.columns.forEach((pluginId, columnOrder) => {
+      const plugs = await row.options.columns.map(async (pluginId, columnOrder) => {
         const plugin = container.plugins.find(el => el.options.uid === pluginId);
-        updateOrCreate(
+        await updateOrCreate(
           Plugins,
           {
             ...plugin.options.childStyle,
@@ -48,8 +48,12 @@ router.post('/', (req, res, next) => {
           },
           { uid: plugin.options.uid }
         );
+        return pluginId;
       });
+      await Promise.all(plugs);
+      return row;
     });
+    await Promise.all(data);
   } catch (e) {
     next(e);
     return;

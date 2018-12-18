@@ -58,6 +58,18 @@ module.exports = () =>
       padding: {
         type: DataTypes.STRING(45),
         allowNull: true
+      },
+      fontSize: {
+        type: DataTypes.STRING(45),
+        allowNull: true
+      },
+      color: {
+        type: DataTypes.STRING(45),
+        allowNull: true
+      },
+      textAlign: {
+        type: DataTypes.STRING(45),
+        allowNull: true
       }
     },
     {

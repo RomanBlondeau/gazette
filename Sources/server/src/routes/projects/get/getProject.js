@@ -26,9 +26,9 @@ router.get('/:id', async (req, res, next) => {
                 height: el.dataValues.height === null ? '' : el.dataValues.height,
                 width: el.dataValues.width === null ? '' : el.dataValues.width,
                 padding: el.dataValues.padding === null ? '' : el.dataValues.padding,
-                textAlign: row.dataValues.textAlign === null ? '' : row.dataValues.textAlign,
-                color: row.dataValues.color === null ? '' : row.dataValues.color,
-                fontSize: row.dataValues.fontSize === null ? '' : row.dataValues.fontSize
+                textAlign: el.dataValues.textAlign === null ? '' : el.dataValues.textAlign,
+                color: el.dataValues.color === null ? '' : el.dataValues.color,
+                fontSize: el.dataValues.fontSize === null ? '' : el.dataValues.fontSize
               }
             }
           });
