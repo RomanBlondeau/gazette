@@ -7,6 +7,7 @@ import Plugin from './PluginView/PluginView';
 import PluginProps from '../../../containers/Container/PluginPropsContainer';
 
 import style from './NewsletterInterface.scss';
+import Console from '../../../containers/Container/ConsoleContainer';
 
 const NewsletterInterface = () => (
   <DragDropContextProvider backend={HTML5backend}>
@@ -14,6 +15,7 @@ const NewsletterInterface = () => (
     <div className={style.containerRow}>
       <Plugin />
       <PluginProps />
+      <Console />
     </div>
   </DragDropContextProvider>
 );
