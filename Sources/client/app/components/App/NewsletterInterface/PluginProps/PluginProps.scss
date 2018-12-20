@@ -6,7 +6,6 @@
   border-radius: 10px;
   width: 100%;
   text-align: center;
-  padding-top: 10px;
   overflow: scroll;
   height: auto;
   margin-bottom: 20px;
@@ -53,4 +52,25 @@
 
 .labelFile:hover {
   background-color: $primary-color;
+}
+
+.header {
+}
+
+.deleteButton {
+  background-color: $error-color;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 5px 6px;
+  transition: 0.2s;
+  position: relative;
+  top: 5px;
+  margin-left: 15px;
+}
+
+.deleteButton:hover {
+  cursor: pointer;
+  background-color: #bd1436;
+  transition: 0.2s;
 }

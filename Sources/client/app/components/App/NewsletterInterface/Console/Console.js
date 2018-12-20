@@ -37,105 +37,10 @@ const formTypes = [
     type: 'Image',
     form: ({ plugin, onUpdate, classes }) => (
       <Fragment>
-        <List className={css.list}>
-          <span className={css.pluginSelected}>Image</span>
-          <ListItem>
-            <ListItemIcon>
-              <BaseIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Base64 image</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              InputClassName={classes.textField}
-              value={plugin.options.src}
-              name="src"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Image in base64"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <TextIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Description</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.alt}
-              name="alt"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Description of the image"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <HeightIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Height</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.height}
-              name="style.height"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Height"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <WidthIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Width</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.width}
-              name="style.width"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Width"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <PaddingIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Padding</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.padding}
-              name="style.padding"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="padding"
-            />
-          </ListItem>
-        </List>
+        <p style={{ color: '#fff', margin: 20 }}>
+          {`<table width="100%"><tr>`}
+          {`</tr></table>`}
+        </p>
       </Fragment>
     )
   },
@@ -143,88 +48,10 @@ const formTypes = [
     type: 'Text',
     form: ({ plugin, onUpdate, classes }) => (
       <Fragment>
-        <List className={css.list}>
-          <span className={css.pluginSelected}>Text</span>
-          <ListItem>
-            <ListItemIcon>
-              <TextIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Text</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              className={classes.textField}
-              value={plugin.options.value}
-              multiline
-              variant="filled"
-              name="value"
-              rows="4"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="text"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <PaddingIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Padding</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.padding}
-              name="style.padding"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="padding"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <WidthIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Font size</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.fontSize}
-              name="style.fontSize"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Font size"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <WidthIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Color</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.color}
-              name="style.color"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Color"
-            />
-          </ListItem>
-        </List>
+        <p style={{ color: '#fff', margin: 20 }}>
+          {`<table width="100%"><tr>`}
+          {`</tr></table>`}
+        </p>
       </Fragment>
     )
   },
@@ -232,47 +59,10 @@ const formTypes = [
     type: 'Link',
     form: ({ plugin, onUpdate, classes }) => (
       <Fragment>
-        <List className={css.list}>
-          <span className={css.pluginSelected}>Link</span>
-          <ListItem>
-            <ListItemIcon>
-              <TextIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Text</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              value={plugin.options.value}
-              fullWidth
-              name="value"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="text"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <UrlIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>URL</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              value={plugin.options.href}
-              fullWidth
-              name="href"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Url"
-            />
-          </ListItem>
-        </List>
+        <p style={{ color: '#fff', margin: 20 }}>
+          {`<table width="100%"><tr>`}
+          {`</tr></table>`}
+        </p>
       </Fragment>
     )
   },
