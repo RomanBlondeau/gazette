@@ -2,9 +2,11 @@
 import React from 'react';
 import { DropTarget } from 'react-dnd';
 import Axios from 'axios';
+import { CircularProgress } from '@material-ui/core';
 import pluginCreator from '../Plugin/PluginCreator';
 
 import css from '../../Editor/Editor.scss';
+import style from './View.scss';
 
 const Types = {
   ITEM: 'plugin'
@@ -58,8 +60,16 @@ type Props = {
 };
 
 class View extends React.Component<Props> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true
+    };
+  }
+
   componentDidMount() {
     const { initContainer, projectId } = this.props;
+    const { loading } = this.state;
 
     Axios.get(`http://localhost:3000/projects/data/${projectId}`, {
       headers: {
@@ -70,6 +80,7 @@ class View extends React.Component<Props> {
     })
       .then(res => {
         initContainer(res);
+        setTimeout(()=> this.setState({ loading: false }), 500);
       })
       .catch(err => {
         console.table(err);
@@ -78,16 +89,23 @@ class View extends React.Component<Props> {
 
   render() {
     const { connectDropTarget, isOver, rows } = this.props;
+    const { loading } = this.state;
 
     return connectDropTarget(
       <div
         className={css.previsualisation}
         style={{ backgroundColor: isOver ? 'white' : 'white' }}
       >
-        {rows.map(el => {
-          const Plugin = pluginCreator(el.type);
-          return <Plugin key={el.options.uid} options={{ ...el.options }} />;
-        })}
+        {loading ? (
+          <div className={style.loading}>
+            <CircularProgress />
+          </div>
+        ) : (
+          rows.map(el => {
+            const Plugin = pluginCreator(el.type);
+            return <Plugin key={el.options.uid} options={{ ...el.options }} />;
+          })
+        )}
       </div>
     );
   }

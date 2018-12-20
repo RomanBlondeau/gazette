@@ -17,7 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
+import { Button } from '@material-ui/core';
 import css from './PluginProps.scss';
 
 const styles = () => ({
@@ -64,6 +64,20 @@ const formTypes = [
               onChange={e => onUpdate(e, plugin, 'plugins')}
               label="Image in base64"
             />
+          </ListItem>
+          <ListItem>
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="raised-button-file"
+              multiple
+              type="file"
+            />
+            <label htmlFor="raised-button-file">
+              <Button raised component="span" className={classes.button}>
+                Upload
+              </Button>
+            </label>
           </ListItem>
           <ListItem>
             <ListItemIcon>

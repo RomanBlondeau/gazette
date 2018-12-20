@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { Fragment } from 'react';
-import { DragDropContextProvider } from 'react-dnd';
 import { connect } from 'react-redux';
-import HTML5backend from 'react-dnd-html5-backend';
 import Axios from 'axios';
 import SaveIcon from '@material-ui/icons/Save';
+import CheckIcon from '@material-ui/icons/Done';
+import ErrorIcon from '@material-ui/icons/Error';
 import Snackbar from '@material-ui/core/Snackbar';
-
-import { Button } from '@material-ui/core';
 import View from '../../../containers/Container/PluginViewContainer';
 import Plugin from './PluginView/PluginView';
 import PluginProps from '../../../containers/Container/PluginPropsContainer';
@@ -26,7 +24,7 @@ class NewsletterInterface extends React.Component {
     super(props);
     this.state = {
       open: false,
-      log: ''
+      log: '',
     };
   }
 
@@ -49,14 +47,18 @@ class NewsletterInterface extends React.Component {
       }
     )
       .then(res => {
-        this.setState({ log: 'Project saved successfully', open: true });
+        this.setState({ log: 'Project saved successfully', saveIcon: <CheckIcon/>, open: true });
         console.log(res.message);
       })
       .catch(e => {
-        this.setState({ log: 'An error occured, project not saved', open: true });
+        this.setState({
+          log: 'An error occured, project not saved',
+          saveIcon: <ErrorIcon />,
+          open: true
+        });
         console.error(e);
       });
-  }
+  };
 
   handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -67,7 +69,7 @@ class NewsletterInterface extends React.Component {
 
   render() {
     const { projectId, rows, plugins } = this.props;
-    const { open, log } = this.state;
+    const { open, log, saveIcon } = this.state;
     return (
       <Fragment>
         <button
@@ -91,7 +93,7 @@ class NewsletterInterface extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id'
           }}
-          message={<span id="message-id">{log}</span>}
+          message={<div>{saveIcon}<span id="message-id" className={style.saveIcon}>{log}</span></div>}
         />
         <View />
         <div className={style.containerRow}>
