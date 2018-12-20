@@ -55,7 +55,28 @@ function getFocus(state, uid) {
 function deletePlugin(state, uid) {
   return {
     ...state,
-    plugins: state.plugins.filter(plugin => plugin.options.uid !== uid)
+    plugins: state.plugins.filter(plugin => plugin.options.uid !== uid),
+    rows: state.rows.map(row => ({
+      ...row,
+      options: {
+        ...row.options,
+        columns: row.options.columns.filter(el => el !== uid)
+      }
+    }))
+  };
+}
+
+function deleteCascade(state, uid) {
+  const toDelete = state.rows.find(row => row.options.uid === uid).options
+    .columns;
+  return state.plugins.filter(plugin => !toDelete.includes(plugin.options.uid));
+}
+
+function deleteRow(state, uid) {
+  return {
+    ...state,
+    plugins: deleteCascade(state, uid),
+    rows: state.rows.filter(row => row.options.uid !== uid)
   };
 }
 
@@ -121,7 +142,9 @@ function container(
     case containerConstants.GET_FOCUS:
       return getFocus(state, action.uid);
     case containerConstants.DELETE_CONTAINER:
-      return deletePlugin(state, action.plugin.options.uid);
+      return deletePlugin(state, action.uid);
+    case containerConstants.DELETE_ROW:
+      return deleteRow(state, action.uid);
     case containerConstants.ADD_PLUGIN_CONTAINER:
       return addPluginInContainer(state, action.toAdd);
     default:

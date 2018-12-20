@@ -33,21 +33,23 @@ router.post('/', async (req, res, next) => {
       );
       const plugs = await row.options.columns.map(async (pluginId, columnOrder) => {
         const plugin = container.plugins.find(el => el.options.uid === pluginId);
-        await updateOrCreate(
-          Plugins,
-          {
-            ...plugin.options.childStyle,
-            type: plugin.type,
-            uid: plugin.options.uid,
-            order: columnOrder,
-            fk_id_row: row.options.uid,
-            value: plugin.options.value,
-            src: plugin.options.src,
-            alt: plugin.options.alt,
-            href: plugin.options.href
-          },
-          { uid: plugin.options.uid }
-        );
+        if (plugin) {
+          await updateOrCreate(
+            Plugins,
+            {
+              ...plugin.options.childStyle,
+              type: plugin.type,
+              uid: plugin.options.uid,
+              order: columnOrder,
+              fk_id_row: row.options.uid,
+              value: plugin.options.value,
+              src: plugin.options.src,
+              alt: plugin.options.alt,
+              href: plugin.options.href
+            },
+            { uid: plugin.options.uid }
+          );
+        }
         return pluginId;
       });
       await Promise.all(plugs);

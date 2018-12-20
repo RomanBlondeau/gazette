@@ -13,6 +13,14 @@ const mapDispatchToProps = dispatch => ({
     dispatch(
       containerAction.updatePlugin({ target: event.target, toUpdate, name })
     );
+  },
+
+  deletePlugin: id => {
+    dispatch(containerAction.deletePlugin(id));
+  },
+
+  deleteRow: id => {
+    dispatch(containerAction.deleteRow(id));
   }
 });
 

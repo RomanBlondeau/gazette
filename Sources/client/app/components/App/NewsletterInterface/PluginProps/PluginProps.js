@@ -18,6 +18,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { Button } from '@material-ui/core';
+
 import css from './PluginProps.scss';
 
 const styles = () => ({
@@ -387,7 +389,15 @@ const formTypes = [
   }
 ];
 
-const PluginProps = ({ rows, plugins, id, onUpdate, classes }) => (
+const PluginProps = ({
+  rows,
+  plugins,
+  id,
+  onUpdate,
+  classes,
+  deletePlugin,
+  deleteRow
+}) => (
   <div className={css.contacts}>
     <p>Modify attributes of the selected element</p>
     {id && (
@@ -396,12 +406,15 @@ const PluginProps = ({ rows, plugins, id, onUpdate, classes }) => (
           if (elem.options.uid === id) {
             const Plugin = formTypes.find(el => el.type === elem.type).form;
             return (
-              <Plugin
-                key={id}
-                plugin={elem}
-                onUpdate={onUpdate}
-                classes={classes}
-              />
+              <Fragment>
+                <Button onClick={() => deletePlugin(id)}>Delete element</Button>
+                <Plugin
+                  key={id}
+                  plugin={elem}
+                  onUpdate={onUpdate}
+                  classes={classes}
+                />
+              </Fragment>
             );
           }
           return '';
@@ -410,12 +423,15 @@ const PluginProps = ({ rows, plugins, id, onUpdate, classes }) => (
           if (elem.options.uid === id) {
             const Plugin = formTypes.find(el => el.type === elem.type).form;
             return (
-              <Plugin
-                key={id}
-                row={elem}
-                onUpdate={onUpdate}
-                classes={classes}
-              />
+              <Fragment>
+                <Button onClick={() => deleteRow(id)}>Delete row</Button>
+                <Plugin
+                  key={id}
+                  row={elem}
+                  onUpdate={onUpdate}
+                  classes={classes}
+                />
+              </Fragment>
             );
           }
           return '';

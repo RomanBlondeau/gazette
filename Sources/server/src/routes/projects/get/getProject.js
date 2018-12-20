@@ -1,9 +1,23 @@
 const router = require('express').Router();
+const _ = require('lodash');
 const Rows = require('../../../database/models/rows')();
 const Plugins = require('../../../database/models/plugins')();
 
+function getColumns(plugin, nbRow) {
+  if (nbRow === '') {
+    // eslint-disable-next-line no-param-reassign
+    nbRow = 1;
+  }
+  const newColumn = [...Array(parseInt(nbRow, 10))].map(() => '_');
+
+  plugin.forEach(el => {
+    newColumn[el.dataValues.order] = el.dataValues.uid;
+  });
+  return newColumn;
+}
+
 router.get('/:id', async (req, res, next) => {
-  const rows = [];
+  let rows = [];
   const columns = [];
   const { id: projectId } = req.params;
 
@@ -35,13 +49,14 @@ router.get('/:id', async (req, res, next) => {
           return el;
         });
         rows.push({
+          order: row.dataValues.order,
           type: row.dataValues.type,
           options: {
             uid: row.dataValues.uid,
             href: '',
             alt: '',
-            columns: plugin.map(el => el.dataValues.uid),
-            value: row.dataValues.value,
+            columns: getColumns(plugin, row.dataValues.value),
+            value: row.dataValues.value === '' ? '1' : row.dataValues.value,
             src: '',
             childStyle: {
               height: '',
@@ -61,6 +76,7 @@ router.get('/:id', async (req, res, next) => {
     next(err);
   }
 
+  rows = _.sortBy(rows, ['order']);
   res.send({ container: { rows, columns } });
 });
 

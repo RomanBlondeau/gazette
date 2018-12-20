@@ -8,8 +8,12 @@ function getFocus(uid) {
   return { type: containerConstants.GET_FOCUS, uid };
 }
 
-function deletePlugin(plugin) {
-  return { type: containerConstants.DELETE_CONTAINER, plugin };
+function deletePlugin(uid) {
+  return { type: containerConstants.DELETE_CONTAINER, uid };
+}
+
+function deleteRow(uid) {
+  return { type: containerConstants.DELETE_ROW, uid };
 }
 
 function addPluginToRow(plugin, rowUpdate, columnId) {
@@ -44,6 +48,7 @@ const container = {
   addPluginToRow,
   updatePlugin,
   deletePlugin,
+  deleteRow,
   getFocus,
   addRow,
   initContainer,
