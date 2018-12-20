@@ -42,6 +42,7 @@ if (localStorage.getItem('user') !== null) {
     .then(boot)
     .catch(e => {
       console.log(e);
+      localStorage.removeItem('user');
       throw new Error('Cannot start the app, please try again');
     });
 } else {

@@ -111,6 +111,7 @@ class NewsletterInterface extends React.Component {
         <div className={style.containerRow}>
           <Plugin />
           <PluginProps />
+          <Console />
         </div>
       </Fragment>
     );

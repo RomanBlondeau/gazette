@@ -10,6 +10,10 @@
   overflow: scroll;
   height: auto;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100px;
 }
 
 .list {
@@ -21,7 +25,6 @@
 }
 
 .sliderContainer {
-  display: flex;
   align-content: center;
   width: 90%;
   margin: auto;

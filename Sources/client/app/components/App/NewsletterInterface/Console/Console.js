@@ -4,7 +4,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import RowIcon from '@material-ui/icons/LineStyle';
 import TextIcon from '@material-ui/icons/Textsms';
 import PaddingIcon from '@material-ui/icons/SettingsEthernet';
 import UrlIcon from '@material-ui/icons/Link';
@@ -12,10 +11,6 @@ import WidthIcon from '@material-ui/icons/SwapHoriz';
 import HeightIcon from '@material-ui/icons/SwapVert';
 import BaseIcon from '@material-ui/icons/Filter';
 import { withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
 import css from './Console.scss';
 
@@ -283,10 +278,9 @@ const formTypes = [
   },
   {
     type: '_',
-    form: ({ row, onUpdate, classes }) => (
+    form: ({ row }) => (
       <Fragment>
-        {console.log("TOTO=", row.options.columns)}
-        <p style={{ color: '#fff' }}>
+        <p style={{ color: '#fff', margin: 20 }}>
           {`<table width="100%"><tr>`}
           {row.options.columns.map(() => `<td style="${rowStyle(row)}"></td>`)}
           {`</tr></table>`}
@@ -309,6 +303,7 @@ function rowStyle(row) {
 
 const Console = ({ rows, plugins, id, onUpdate, classes }) => (
   <div className={css.contacts}>
+    <p style={{ textAlign: 'center' }}>Code rendered</p>
     {id && (
       <div>
         {plugins.map(elem => {

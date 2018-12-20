@@ -1,11 +1,15 @@
+@import '../../../../app.global';
+@import "../../../../scss/color";
+
 .contacts {
-  background-color: #3a3a3a;
+  background-color: $secondary-color;
   height: 100%;
   border-radius: 10px;
   width: 100%;
-  text-align: center;
   overflow: scroll;
-  height: auto;
+  text-align: left;
+  max-height: 150px;
+  min-height: 120px;
 }
 
 .list {
