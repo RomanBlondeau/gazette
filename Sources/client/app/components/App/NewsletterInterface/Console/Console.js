@@ -38,8 +38,9 @@ const formTypes = [
     form: ({ plugin, onUpdate, classes }) => (
       <Fragment>
         <p style={{ color: '#fff', margin: 20 }}>
-          {`<table width="100%"><tr>`}
-          {`</tr></table>`}
+          {`<img style="${generateStyle(plugin)}" href="${
+            plugin.options.src
+          }" alt="${plugin.options.alt}" />`}
         </p>
       </Fragment>
     )
@@ -49,8 +50,7 @@ const formTypes = [
     form: ({ plugin, onUpdate, classes }) => (
       <Fragment>
         <p style={{ color: '#fff', margin: 20 }}>
-          {`<table width="100%"><tr>`}
-          {`</tr></table>`}
+          {`<p style="${generateStyle(plugin)}">${plugin.options.value}</p>`}
         </p>
       </Fragment>
     )
@@ -60,8 +60,7 @@ const formTypes = [
     form: ({ plugin, onUpdate, classes }) => (
       <Fragment>
         <p style={{ color: '#fff', margin: 20 }}>
-          {`<table width="100%"><tr>`}
-          {`</tr></table>`}
+          {`<a href="${plugin.options.href}">${plugin.options.value}</a>`}
         </p>
       </Fragment>
     )
@@ -72,7 +71,9 @@ const formTypes = [
       <Fragment>
         <p style={{ color: '#fff', margin: 20 }}>
           {`<table width="100%"><tr>`}
-          {row.options.columns.map(() => `<td style="${rowStyle(row)}"></td>`)}
+          {row.options.columns.map(
+            () => `<td style="${generateStyle(row)}"></td>`
+          )}
           {`</tr></table>`}
         </p>
       </Fragment>
@@ -80,7 +81,7 @@ const formTypes = [
   }
 ];
 
-function rowStyle(row) {
+function generateStyle(row) {
   let style = '';
   Object.keys(row.options.childStyle).forEach(obj => {
     if (row.options.childStyle[obj])
