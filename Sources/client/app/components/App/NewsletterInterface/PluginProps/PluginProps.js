@@ -17,7 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { Button } from '@material-ui/core';
+import base64Img from 'base64-img';
 import css from './PluginProps.scss';
 
 const styles = () => ({
@@ -37,6 +37,18 @@ const styles = () => ({
     fontSize: 10
   }
 });
+
+function imageToBase64(event, onUpdate, plugin) {
+  const e = {...event, target: {...event.target, value: "", name: event.target.name}};
+
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    e.target.value = reader.result;
+    onUpdate(e, plugin, 'plugins');
+  }, false);
+
+  reader.readAsDataURL(event.target.files[0]);
+}
 
 const formTypes = [
   {
@@ -72,12 +84,9 @@ const formTypes = [
               id="raised-button-file"
               multiple
               type="file"
+              name="src"
+              onChange={(e) => imageToBase64(e, onUpdate, plugin)}
             />
-            <label htmlFor="raised-button-file">
-              <Button raised component="span" className={classes.button}>
-                Upload
-              </Button>
-            </label>
           </ListItem>
           <ListItem>
             <ListItemIcon>
