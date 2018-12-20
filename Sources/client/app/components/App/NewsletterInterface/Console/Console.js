@@ -1,15 +1,5 @@
 import React, { Fragment } from 'react';
-import TextField from '@material-ui/core/TextField';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import TextIcon from '@material-ui/icons/Textsms';
-import PaddingIcon from '@material-ui/icons/SettingsEthernet';
-import UrlIcon from '@material-ui/icons/Link';
-import WidthIcon from '@material-ui/icons/SwapHoriz';
-import HeightIcon from '@material-ui/icons/SwapVert';
-import BaseIcon from '@material-ui/icons/Filter';
+import Highlight, { defaultProps } from 'prism-react-renderer';
 import { withStyles } from '@material-ui/core/styles';
 
 import css from './Console.scss';
@@ -35,33 +25,79 @@ const styles = () => ({
 const formTypes = [
   {
     type: 'Image',
-    form: ({ plugin, onUpdate, classes }) => (
+    form: ({ plugin }) => (
       <Fragment>
-        <p style={{ color: '#fff', margin: 20 }}>
-          {`<img style="${generateStyle(plugin)}" href="${
-            plugin.options.src
-          }" alt="${plugin.options.alt}" />`}
-        </p>
+        <Highlight
+          {...defaultProps}
+          code={`<img style="${generateStyle(plugin)}" href="BASE64URL" alt="${
+            plugin.options.alt
+          }" />`}
+          language="jsx"
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
       </Fragment>
     )
   },
   {
     type: 'Text',
-    form: ({ plugin, onUpdate, classes }) => (
+    form: ({ plugin }) => (
       <Fragment>
-        <p style={{ color: '#fff', margin: 20 }}>
-          {`<p style="${generateStyle(plugin)}">${plugin.options.value}</p>`}
-        </p>
+        <Highlight
+          {...defaultProps}
+          code={`<p style="${generateStyle(plugin)}">
+    ${plugin.options.value}
+</p>`}
+          language="jsx"
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
       </Fragment>
     )
   },
   {
     type: 'Link',
-    form: ({ plugin, onUpdate, classes }) => (
+    form: ({ plugin }) => (
       <Fragment>
-        <p style={{ color: '#fff', margin: 20 }}>
-          {`<a href="${plugin.options.href}">${plugin.options.value}</a>`}
-        </p>
+        <Highlight
+          {...defaultProps}
+          code={`<a href="${plugin.options.href}">
+    ${plugin.options.value}
+</a>`}
+          language="jsx"
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
       </Fragment>
     )
   },
@@ -69,13 +105,30 @@ const formTypes = [
     type: '_',
     form: ({ row }) => (
       <Fragment>
-        <p style={{ color: '#fff', margin: 20 }}>
-          {`<table width="100%"><tr>`}
-          {row.options.columns.map(
-            () => `<td style="${generateStyle(row)}"></td>`
+        <Highlight
+          {...defaultProps}
+          code={`<table width="100%">
+    <tr>
+        ${row.options.columns.map(
+          () => `<td style="${generateStyle(row)}"></td>\n\t`
+        )}
+    </tr>
+</table>
+          `}
+          language="jsx"
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
           )}
-          {`</tr></table>`}
-        </p>
+        </Highlight>
       </Fragment>
     )
   }
