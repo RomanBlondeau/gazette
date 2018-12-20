@@ -36,7 +36,7 @@ module.exports = () =>
         allowNull: false
       },
       src: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.TEXT('long'),
         allowNull: true
       },
       alt: {
