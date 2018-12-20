@@ -12,6 +12,7 @@ import PluginProps from '../../../containers/Container/PluginPropsContainer';
 import config from '../../../config/api';
 
 import style from './NewsletterInterface.scss';
+import Console from '../../../containers/Container/ConsoleContainer';
 
 const mapStateToProps = state => ({
   projectId: state.container.projectId,
@@ -110,6 +111,7 @@ class NewsletterInterface extends React.Component {
         <div className={style.containerRow}>
           <Plugin />
           <PluginProps />
+          <Console />
         </div>
       </Fragment>
     );

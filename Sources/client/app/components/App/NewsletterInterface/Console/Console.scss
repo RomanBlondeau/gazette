@@ -1,0 +1,27 @@
+@import '../../../../app.global';
+@import "../../../../scss/color";
+
+.contacts {
+  background-color: $secondary-color;
+  height: 100%;
+  border-radius: 10px;
+  width: 100%;
+  overflow: scroll;
+  text-align: left;
+  max-height: 150px;
+  min-height: 120px;
+}
+
+.list {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  padding: 0!important;
+  width: 100%;
+}
+
+.pluginSelected {
+  color: #43425D;
+  font-size: 16px;
+  font-weight: bold;
+}

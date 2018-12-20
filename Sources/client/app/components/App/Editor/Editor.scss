@@ -42,7 +42,6 @@
 .selector {
   display: flex;
   align-items: center;
-  align-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -50,8 +49,9 @@
   border-radius: 10px;
   width: 100%;
   margin-bottom: 20px;
-  padding: 15px 15px;
-  min-height: 30%;
+  min-height: 150px;
+  height: auto;
+  overflow: auto;
 }
 
 .contacts {

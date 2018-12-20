@@ -6,9 +6,13 @@
   border-radius: 10px;
   width: 100%;
   text-align: center;
-  padding-top: 10px;
   overflow: scroll;
-  height: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100px;
 }
 
 .list {
@@ -20,7 +24,6 @@
 }
 
 .sliderContainer {
-  display: flex;
   align-content: center;
   width: 90%;
   margin: auto;
@@ -49,4 +52,25 @@
 
 .labelFile:hover {
   background-color: $primary-color;
+}
+
+.header {
+}
+
+.deleteButton {
+  background-color: $error-color;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 5px 6px;
+  transition: 0.2s;
+  position: relative;
+  top: 5px;
+  margin-left: 15px;
+}
+
+.deleteButton:hover {
+  cursor: pointer;
+  background-color: #bd1436;
+  transition: 0.2s;
 }

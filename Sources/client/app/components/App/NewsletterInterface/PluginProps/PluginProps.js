@@ -18,7 +18,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { Button } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import css from './PluginProps.scss';
 
@@ -399,21 +399,31 @@ const PluginProps = ({
   deleteRow
 }) => (
   <div className={css.contacts}>
-    <p>Modify attributes of the selected element</p>
     {id && (
-      <div className={css.sliderContainer}>
+      <div>
         {plugins.map(elem => {
           if (elem.options.uid === id) {
             const Plugin = formTypes.find(el => el.type === elem.type).form;
             return (
               <Fragment>
-                <Button onClick={() => deletePlugin(id)}>Delete element</Button>
-                <Plugin
-                  key={id}
-                  plugin={elem}
-                  onUpdate={onUpdate}
-                  classes={classes}
-                />
+                <p>
+                  Modify attributes of the selected element
+                  <button
+                    type="button"
+                    className={css.deleteButton}
+                    onClick={() => deletePlugin(id)}
+                  >
+                    <DeleteIcon style={{ fontSize: 22 }} />
+                  </button>
+                </p>
+                <div className={css.sliderContainer}>
+                  <Plugin
+                    key={id}
+                    plugin={elem}
+                    onUpdate={onUpdate}
+                    classes={classes}
+                  />
+                </div>
               </Fragment>
             );
           }
@@ -424,13 +434,24 @@ const PluginProps = ({
             const Plugin = formTypes.find(el => el.type === elem.type).form;
             return (
               <Fragment>
-                <Button onClick={() => deleteRow(id)}>Delete row</Button>
-                <Plugin
-                  key={id}
-                  row={elem}
-                  onUpdate={onUpdate}
-                  classes={classes}
-                />
+                <p>
+                  Modify attributes of the selected element
+                  <button
+                    type="button"
+                    className={css.deleteButton}
+                    onClick={() => deleteRow(id)}
+                  >
+                    <DeleteIcon style={{ fontSize: 22 }} />
+                  </button>
+                </p>
+                <div className={css.sliderContainer}>
+                  <Plugin
+                    key={id}
+                    row={elem}
+                    onUpdate={onUpdate}
+                    classes={classes}
+                  />
+                </div>
               </Fragment>
             );
           }
