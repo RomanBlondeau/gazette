@@ -19,21 +19,26 @@ const styles = () => ({
 class Settings extends React.Component {
   deleteAccount = () => {
     const { user } = this.props;
-    axios.delete(`${config.user.delete}/${user.id}`, {
-      headers: {
-        Authorization: `Bearer ${
-          JSON.parse(localStorage.getItem('user')).token
-        }`
-      }
-    })
-    .then(() => {
-      alert('Your account has been deleted. You will be redirected to the login page.');
-      history.push(routes.LOGIN)
-    })
-    .catch(err => {
-      console.error(err);
-      alert('An error occured, we couldn\'t delete your account, please try again.');
-    })
+    axios
+      .delete(`${config.user.delete}/${user.id}`, {
+        headers: {
+          Authorization: `Bearer ${
+            JSON.parse(localStorage.getItem('user')).token
+          }`
+        }
+      })
+      .then(() => {
+        alert(
+          'Your account has been deleted. You will be redirected to the login page.'
+        );
+        history.push(routes.LOGIN);
+      })
+      .catch(err => {
+        console.error(err);
+        alert(
+          "An error occured, we couldn't delete your account, please try again."
+        );
+      });
   };
 
   render() {

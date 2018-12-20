@@ -81,24 +81,21 @@ class SideNavbar extends Component<Props> {
           <span className={css.mainTitle}>---- Gazette ----</span>
         </div>
         <List>
-          {['Home', 'Contacts', 'Calendar', 'Settings'].map(
-            (text, index) => (
-              <ListItem
-                button
-                key={text}
-                onClick={() => this.menuSwitchPage(index)}
-                selected={
-                  active.substring(0, 5) ===
-                  pageList[index].page.substring(0, 5)
-                }
-              >
-                <ListItemIcon style={iconStyle}>
-                  {pageList[index].icon}
-                </ListItemIcon>
-                <ListItemText disableTypography primary={text} />
-              </ListItem>
-            )
-          )}
+          {['Home', 'Contacts', 'Calendar', 'Settings'].map((text, index) => (
+            <ListItem
+              button
+              key={text}
+              onClick={() => this.menuSwitchPage(index)}
+              selected={
+                active.substring(0, 5) === pageList[index].page.substring(0, 5)
+              }
+            >
+              <ListItemIcon style={iconStyle}>
+                {pageList[index].icon}
+              </ListItemIcon>
+              <ListItemText disableTypography primary={text} />
+            </ListItem>
+          ))}
         </List>
       </Drawer>
     );

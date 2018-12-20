@@ -80,7 +80,7 @@ class View extends React.Component<Props> {
     })
       .then(res => {
         initContainer(res);
-        setTimeout(()=> this.setState({ loading: false }), 500);
+        setTimeout(() => this.setState({ loading: false }), 500);
       })
       .catch(err => {
         console.table(err);

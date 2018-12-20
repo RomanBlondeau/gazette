@@ -7,9 +7,10 @@ const pluginType = [
       let style = '';
       Object.keys(childStyle).forEach(obj => {
         if (childStyle[obj])
-          style += `${obj.replace(/([A-Z])/g, g => `-${g[0].toLowerCase()}`)}: ${
-            childStyle[obj]
-          }; `;
+          style += `${obj.replace(
+            /([A-Z])/g,
+            g => `-${g[0].toLowerCase()}`
+          )}: ${childStyle[obj]}; `;
       });
       value = value.replace(/\n/g, '<br />');
       return `<p style="${style}">${value}</p>`;
@@ -25,9 +26,10 @@ const pluginType = [
       let style = '';
       Object.keys(childStyle).forEach(obj => {
         if (childStyle[obj])
-          style += `${obj.replace(/([A-Z])/g, g => `-${g[0].toLowerCase()}`)}: ${
-            childStyle[obj]
-          }; `;
+          style += `${obj.replace(
+            /([A-Z])/g,
+            g => `-${g[0].toLowerCase()}`
+          )}: ${childStyle[obj]}; `;
       });
       return `<img src="${src}" alt="${alt}" style="${style}" />`;
     }
@@ -44,14 +46,19 @@ function generateBody(container) {
       let style = '';
       Object.keys(row.options.childStyle).forEach(obj => {
         if (row.options.childStyle[obj])
-          style += `${obj.replace(/([A-Z])/g, g => `-${g[0].toLowerCase()}`)}: ${
-            row.options.childStyle[obj]
-          }; `;
+          style += `${obj.replace(
+            /([A-Z])/g,
+            g => `-${g[0].toLowerCase()}`
+          )}: ${row.options.childStyle[obj]}; `;
       });
       body += `<td style="${style}">`;
-      const plugin = container.plugins.find(elem => elem.options.uid === pluginId);
+      const plugin = container.plugins.find(
+        elem => elem.options.uid === pluginId
+      );
       if (plugin !== undefined)
-        body += pluginType.find(({ type }) => type === plugin.type).func(plugin.options);
+        body += pluginType
+          .find(({ type }) => type === plugin.type)
+          .func(plugin.options);
       body += `</td>`;
     });
     body += `</tr></table>`;
@@ -65,7 +72,17 @@ const Previsualization = ({ container }) => {
   let html = '';
   html += generateBody(container);
 
-  return <div style={{ width: '100%', backgroundColor: '#fff', borderRadius: '5px', color: 'black' }} dangerouslySetInnerHTML={{__html: html}} />;
-}
+  return (
+    <div
+      style={{
+        width: '100%',
+        backgroundColor: '#fff',
+        borderRadius: '5px',
+        color: 'black'
+      }}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
+};
 
 export default Previsualization;

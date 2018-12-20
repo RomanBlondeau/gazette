@@ -1,3 +1,6 @@
+@import '../../../../app.global';
+@import "../../../../scss/color";
+
 .contacts {
   background-color: #43425D;
   border-radius: 10px;
@@ -31,4 +34,19 @@
   color: #43425D;
   font-size: 16px;
   font-weight: bold;
+}
+
+.localImage {
+  display: none;
+}
+
+.labelFile {
+  cursor: pointer;
+  background-color: $secondary-color;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.labelFile:hover {
+  background-color: $primary-color;
 }

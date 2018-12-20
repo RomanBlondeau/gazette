@@ -24,7 +24,7 @@ class NewsletterInterface extends React.Component {
     super(props);
     this.state = {
       open: false,
-      log: '',
+      log: ''
     };
   }
 
@@ -47,7 +47,11 @@ class NewsletterInterface extends React.Component {
       }
     )
       .then(res => {
-        this.setState({ log: 'Project saved successfully', saveIcon: <CheckIcon/>, open: true });
+        this.setState({
+          log: 'Project saved successfully',
+          saveIcon: <CheckIcon />,
+          open: true
+        });
         console.log(res.message);
       })
       .catch(e => {
@@ -93,7 +97,14 @@ class NewsletterInterface extends React.Component {
           ContentProps={{
             'aria-describedby': 'message-id'
           }}
-          message={<div>{saveIcon}<span id="message-id" className={style.saveIcon}>{log}</span></div>}
+          message={
+            <div>
+              {saveIcon}
+              <span id="message-id" className={style.saveIcon}>
+                {log}
+              </span>
+            </div>
+          }
         />
         <View />
         <div className={style.containerRow}>
