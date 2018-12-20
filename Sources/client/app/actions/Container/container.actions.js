@@ -26,12 +26,28 @@ function addRow(row) {
   };
 }
 
+function setProjectId(projectId) {
+  return {
+    type: containerConstants.SET_PROJECT_ID,
+    projectId
+  };
+}
+
+function initContainer(container) {
+  return {
+    type: containerConstants.INIT_CONTAINER,
+    container: container.data.container
+  };
+}
+
 const container = {
   addPluginToRow,
   updatePlugin,
   deletePlugin,
   getFocus,
-  addRow
+  addRow,
+  initContainer,
+  setProjectId
 };
 
 export default container;

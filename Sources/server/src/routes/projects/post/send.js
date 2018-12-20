@@ -14,19 +14,13 @@ async function sendMail(to, subject, htmlBody) {
 router.post('/', async (req, res) => {
   const { to, subject, body } = req.body;
 
-  if (!to || !subject || !body) {
-    res.status(400).json({
-      message: 'Invalid arguments. Recipient, subject and body required.'
-    });
-  } else {
-    try {
-      const htmlBody = emailGenerator(body);
-      await sendMail(to, subject, htmlBody);
-      res.status(200).json({ message: `Success` });
-    } catch (e) {
-      console.error('[Error trying to send mail]: ', e);
-      res.status(400).json({ message: `please check email adresses and try again.` });
-    }
+  try {
+    const htmlBody = emailGenerator(body);
+    await sendMail(to, subject, htmlBody);
+    res.status(200).json({ message: `Success` });
+  } catch (e) {
+    console.error('[Error trying to send mail]: ', e);
+    res.status(400).json({ message: `please check email adresses and try again.` });
   }
 });
 

@@ -9,3 +9,5 @@ server/config
 Sources/server/\.env\.json
 
 Sources/server/config/default\.json
+
+\.vscode/

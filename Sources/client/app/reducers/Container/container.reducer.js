@@ -90,8 +90,30 @@ function addRow(state, row) {
   };
 }
 
-function container(state = { plugins: [], rows: [], id: undefined }, action) {
+function initProject(state, { rows, columns: plugins }) {
+  return {
+    ...state,
+    rows,
+    plugins
+  };
+}
+
+function setProjectId(state, projectId) {
+  return {
+    ...state,
+    projectId
+  };
+}
+
+function container(
+  state = { plugins: [], rows: [], id: undefined, projectId: undefined },
+  action
+) {
   switch (action.type) {
+    case containerConstants.INIT_CONTAINER:
+      return initProject(state, action.container);
+    case containerConstants.SET_PROJECT_ID:
+      return setProjectId(state, action.projectId);
     case containerConstants.ADD_ROW:
       return addRow(state, action.row);
     case containerConstants.UPDATE_PLUGIN:

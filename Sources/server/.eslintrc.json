@@ -1,7 +1,7 @@
 {
   "plugins": ["prettier", "mocha"],
   "parserOptions": {
-    "ecmaVersion": 8
+    "ecmaVersion": 2018
   },
   "extends": ["plugin:node/recommended", "airbnb", "prettier"],
   "rules": {
@@ -13,7 +13,8 @@
     "node/prefer-global/url-search-params": ["error", "always"],
     "node/prefer-global/url": ["error", "always"],
     "no-console": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
   },
   "env": {
     "mocha": true

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
@@ -6,6 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import RowIcon from '@material-ui/icons/LineStyle';
 import TextIcon from '@material-ui/icons/Textsms';
+import ColorIcon from '@material-ui/icons/FormatPaint';
 import PaddingIcon from '@material-ui/icons/SettingsEthernet';
 import UrlIcon from '@material-ui/icons/Link';
 import WidthIcon from '@material-ui/icons/SwapHoriz';
@@ -16,7 +18,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
 import css from './PluginProps.scss';
 
 const styles = () => ({
@@ -37,6 +38,25 @@ const styles = () => ({
   }
 });
 
+function imageToBase64(event, onUpdate, plugin) {
+  const e = {
+    ...event,
+    target: { ...event.target, value: '', name: event.target.name }
+  };
+
+  const reader = new FileReader();
+  reader.addEventListener(
+    'load',
+    () => {
+      e.target.value = reader.result;
+      onUpdate(e, plugin, 'plugins');
+    },
+    false
+  );
+
+  reader.readAsDataURL(event.target.files[0]);
+}
+
 const formTypes = [
   {
     type: 'Image',
@@ -44,6 +64,29 @@ const formTypes = [
       <Fragment>
         <List className={css.list}>
           <span className={css.pluginSelected}>Image</span>
+          <ListItem>
+            <ListItemIcon>
+              <BaseIcon color="primary" className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText
+              disableTypography
+              primary={<span style={{ color: 'grey' }}>Local image</span>}
+            />
+          </ListItem>
+          <ListItem>
+            <label htmlFor="raised-button-file" className={css.labelFile}>
+              Select an image
+            </label>
+            <input
+              className={css.localImage}
+              accept="image/*"
+              id="raised-button-file"
+              multiple
+              type="file"
+              name="src"
+              onChange={e => imageToBase64(e, onUpdate, plugin)}
+            />
+          </ListItem>
           <ListItem>
             <ListItemIcon>
               <BaseIcon color="primary" className={classes.icon} />
@@ -66,11 +109,49 @@ const formTypes = [
           </ListItem>
           <ListItem>
             <ListItemIcon>
+              <HeightIcon color="primary" className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText
+              disableTypography
+              primary={<span style={{ color: 'grey' }}>Height</span>}
+            />
+            <ListItemIcon>
+              <WidthIcon color="primary" className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText
+              disableTypography
+              primary={<span style={{ color: 'grey' }}>Width</span>}
+            />
+          </ListItem>
+          <ListItem>
+            <div style={{ marginRight: 5, width: '100%' }}>
+              <TextField
+                fullWidth
+                value={plugin.options.childStyle.height}
+                name="style.height"
+                variant="filled"
+                onChange={e => onUpdate(e, plugin, 'plugins')}
+                label="Height"
+              />
+            </div>
+            <div style={{ width: '100%' }}>
+              <TextField
+                fullWidth
+                value={plugin.options.childStyle.width}
+                name="style.width"
+                variant="filled"
+                onChange={e => onUpdate(e, plugin, 'plugins')}
+                label="Width"
+              />
+            </div>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
               <TextIcon color="primary" className={classes.icon} />
             </ListItemIcon>
             <ListItemText
               disableTypography
-              primary={<span style={{ color: 'grey' }}>Description</span>}
+              primary={<span style={{ color: 'grey' }}>Description (alt)</span>}
             />
           </ListItem>
           <ListItem>
@@ -81,44 +162,6 @@ const formTypes = [
               variant="filled"
               onChange={e => onUpdate(e, plugin, 'plugins')}
               label="Description of the image"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <HeightIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Height</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.height}
-              name="style.height"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Height"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <WidthIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Width</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.width}
-              name="style.width"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Width"
             />
           </ListItem>
           <ListItem>
@@ -174,6 +217,44 @@ const formTypes = [
           </ListItem>
           <ListItem>
             <ListItemIcon>
+              <WidthIcon color="primary" className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText
+              disableTypography
+              primary={<span style={{ color: 'grey' }}>Font size</span>}
+            />
+            <ListItemIcon>
+              <ColorIcon color="primary" className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText
+              disableTypography
+              primary={<span style={{ color: 'grey' }}>Color</span>}
+            />
+          </ListItem>
+          <ListItem>
+            <div style={{ marginRight: 5, width: '100%' }}>
+              <TextField
+                fullWidth
+                value={plugin.options.childStyle.fontSize}
+                name="style.fontSize"
+                variant="filled"
+                onChange={e => onUpdate(e, plugin, 'plugins')}
+                label="Font size"
+              />
+            </div>
+            <div style={{ width: '100%' }}>
+              <TextField
+                fullWidth
+                value={plugin.options.childStyle.color}
+                name="style.color"
+                variant="filled"
+                onChange={e => onUpdate(e, plugin, 'plugins')}
+                label="Color"
+              />
+            </div>
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
               <PaddingIcon color="primary" className={classes.icon} />
             </ListItemIcon>
             <ListItemText
@@ -189,44 +270,6 @@ const formTypes = [
               variant="filled"
               onChange={e => onUpdate(e, plugin, 'plugins')}
               label="padding"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <WidthIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Font size</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.fontSize}
-              name="style.fontSize"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Font size"
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <WidthIcon color="primary" className={classes.icon} />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              primary={<span style={{ color: 'grey' }}>Color</span>}
-            />
-          </ListItem>
-          <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.color}
-              name="style.color"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="Color"
             />
           </ListItem>
         </List>
