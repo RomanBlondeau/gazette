@@ -42,7 +42,8 @@ const plugin = [
             style={{
               color: style.color,
               fontSize: style.fontSize,
-              padding: style.padding
+              padding: style.padding,
+              whiteSpace: 'pre-line'
             }}
           >
             {value}

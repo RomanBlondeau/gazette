@@ -78,7 +78,8 @@ const Previsualization = ({ container }) => {
         width: '100%',
         backgroundColor: '#fff',
         borderRadius: '5px',
-        color: 'black'
+        color: 'black',
+        padding: 10
       }}
       dangerouslySetInnerHTML={{ __html: html }}
     />

@@ -69,7 +69,6 @@ class View extends React.Component<Props> {
 
   componentDidMount() {
     const { initContainer, projectId } = this.props;
-    const { loading } = this.state;
 
     Axios.get(`http://localhost:3000/projects/data/${projectId}`, {
       headers: {
