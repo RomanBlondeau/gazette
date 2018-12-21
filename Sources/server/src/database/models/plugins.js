@@ -67,6 +67,10 @@ module.exports = () =>
         type: DataTypes.STRING(45),
         allowNull: true
       },
+      fontWeight: {
+        type: DataTypes.STRING(45),
+        allowNull: true
+      },
       textAlign: {
         type: DataTypes.STRING(45),
         allowNull: true

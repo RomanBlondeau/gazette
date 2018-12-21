@@ -42,7 +42,8 @@ router.get('/:id', async (req, res, next) => {
                 padding: el.dataValues.padding === null ? '' : el.dataValues.padding,
                 textAlign: el.dataValues.textAlign === null ? '' : el.dataValues.textAlign,
                 color: el.dataValues.color === null ? '' : el.dataValues.color,
-                fontSize: el.dataValues.fontSize === null ? '' : el.dataValues.fontSize
+                fontSize: el.dataValues.fontSize === null ? '' : el.dataValues.fontSize,
+                fontWeight: el.dataValues.fontWeight === null ? '' : el.dataValues.fontWeight
               }
             }
           });

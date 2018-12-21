@@ -43,6 +43,7 @@ const plugin = [
               color: style.color,
               fontSize: style.fontSize,
               padding: style.padding,
+              fontWeight: style.fontWeight,
               whiteSpace: 'pre-line'
             }}
           >

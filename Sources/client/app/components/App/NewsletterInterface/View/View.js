@@ -35,7 +35,8 @@ const viewTarget = {
             padding: '',
             fontSize: '',
             color: '',
-            textAlign: ''
+            textAlign: '',
+            fontWeight: ''
           }
         }
       });

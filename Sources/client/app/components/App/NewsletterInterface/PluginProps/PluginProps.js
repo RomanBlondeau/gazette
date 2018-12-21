@@ -13,6 +13,7 @@ import UrlIcon from '@material-ui/icons/Link';
 import WidthIcon from '@material-ui/icons/SwapHoriz';
 import HeightIcon from '@material-ui/icons/SwapVert';
 import BaseIcon from '@material-ui/icons/Filter';
+import WeightIcon from '@material-ui/icons/TextRotateVertical';
 import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -261,18 +262,39 @@ const formTypes = [
             </ListItemIcon>
             <ListItemText
               disableTypography
-              primary={<span style={{ color: 'grey' }}>Padding</span>}
+              primary={
+                <span style={{ color: 'grey', marginRight: 45 }}>Padding</span>
+              }
+            />
+            <ListItemIcon>
+              <WeightIcon color="primary" className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText
+              disableTypography
+              primary={<span style={{ color: 'grey' }}>Font-weight</span>}
             />
           </ListItem>
           <ListItem>
-            <TextField
-              fullWidth
-              value={plugin.options.childStyle.padding}
-              name="style.padding"
-              variant="filled"
-              onChange={e => onUpdate(e, plugin, 'plugins')}
-              label="padding"
-            />
+            <div style={{ marginRight: 5, width: '100%' }}>
+              <TextField
+                fullWidth
+                value={plugin.options.childStyle.padding}
+                name="style.padding"
+                variant="filled"
+                onChange={e => onUpdate(e, plugin, 'plugins')}
+                label="padding"
+              />
+            </div>
+            <div style={{ width: '100%' }}>
+              <TextField
+                fullWidth
+                value={plugin.options.childStyle.fontWeight}
+                name="style.fontWeight"
+                variant="filled"
+                onChange={e => onUpdate(e, plugin, 'plugins')}
+                label="font-weight"
+              />
+            </div>
           </ListItem>
         </List>
       </Fragment>
