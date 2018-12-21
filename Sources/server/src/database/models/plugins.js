@@ -28,7 +28,7 @@ module.exports = () =>
         allowNull: false
       },
       value: {
-        type: DataTypes.STRING(45),
+        type: DataTypes.TEXT('medium'),
         allowNull: true
       },
       type: {
