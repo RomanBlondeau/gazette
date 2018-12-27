@@ -9,6 +9,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   update: (plugin, rowUpdate, columnId) => {
     dispatch(containerAction.addPluginToRow(plugin, rowUpdate, columnId));
+  },
+
+  swap: (draggedElem, toSwap) => {
+    dispatch(containerAction.swapRow(draggedElem, toSwap));
   }
 });
 

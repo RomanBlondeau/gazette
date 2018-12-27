@@ -78,17 +78,17 @@ const formTypes = [
           </ListItem>
           <ListItem>
             <label htmlFor="raised-button-file" className={css.labelFile}>
+              <input
+                className={css.localImage}
+                accept="image/*"
+                id="raised-button-file"
+                multiple
+                type="file"
+                name="src"
+                onChange={e => imageToBase64(e, onUpdate, plugin)}
+              />
               Select an image
             </label>
-            <input
-              className={css.localImage}
-              accept="image/*"
-              id="raised-button-file"
-              multiple
-              type="file"
-              name="src"
-              onChange={e => imageToBase64(e, onUpdate, plugin)}
-            />
           </ListItem>
           <ListItem>
             <ListItemIcon>
@@ -102,7 +102,7 @@ const formTypes = [
           <ListItem>
             <TextField
               fullWidth
-              InputClassName={classes.textField}
+              className={classes.textField}
               value={plugin.options.src}
               name="src"
               variant="filled"
@@ -427,7 +427,7 @@ const PluginProps = ({
           if (elem.options.uid === id) {
             const Plugin = formTypes.find(el => el.type === elem.type).form;
             return (
-              <Fragment>
+              <Fragment key={id}>
                 <p>
                   Modify attributes of the selected element
                   <button

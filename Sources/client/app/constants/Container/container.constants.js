@@ -6,7 +6,8 @@ const containerConstants = {
   ADD_PLUGIN_CONTAINER: 'ADD_PLUGIN_CONTAINER',
   ADD_ROW: 'ADD_ROW',
   INIT_CONTAINER: 'INIT_CONTAINER',
-  SET_PROJECT_ID: 'SET_PROJECT_ID'
+  SET_PROJECT_ID: 'SET_PROJECT_ID',
+  SWAP_ROW: 'SWAP_ROW'
 };
 
 export default containerConstants;

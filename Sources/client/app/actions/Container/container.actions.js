@@ -44,12 +44,20 @@ function initContainer(container) {
   };
 }
 
+function swapRow(draggedUid, toSwapUid) {
+  return {
+    type: containerConstants.SWAP_ROW,
+    toSwap: { draggedUid, toSwapUid }
+  };
+}
+
 const container = {
   addPluginToRow,
   updatePlugin,
   deletePlugin,
   deleteRow,
   getFocus,
+  swapRow,
   addRow,
   initContainer,
   setProjectId

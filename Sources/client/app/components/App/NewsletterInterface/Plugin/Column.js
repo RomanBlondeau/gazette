@@ -11,6 +11,8 @@ const viewTarget = {
     const item = monitor.getItem();
     const rowUpdate = rows.find(el => el.options.uid === rowId);
 
+    console.log(rowId);
+
     if (item.options.uid === undefined && item.options.type !== '_') {
       update(
         {
@@ -37,6 +39,15 @@ const viewTarget = {
         rowUpdate,
         index
       );
+    }
+  },
+
+  hover(props, monitor) {
+    const { swap, rowId } = props;
+    const item = monitor.getItem();
+
+    if (item.rowId !== undefined && item.rowId !== rowId) {
+      swap(item.rowId, rowId);
     }
   }
 };
@@ -74,7 +85,11 @@ const Column = ({
       {isEmpty ? (
         <p>Drop an element here</p>
       ) : (
-        <Plugin key={pluginOptions.uid} options={{ ...pluginOptions }} />
+        <Plugin
+          key={pluginOptions.uid}
+          rowId={rowId}
+          options={{ ...pluginOptions }}
+        />
       )}
     </td>
   );

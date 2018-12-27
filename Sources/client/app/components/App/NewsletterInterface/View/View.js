@@ -103,7 +103,13 @@ class View extends React.Component<Props> {
         ) : (
           rows.map(el => {
             const Plugin = pluginCreator(el.type);
-            return <Plugin key={el.options.uid} options={{ ...el.options }} />;
+            return (
+              <Plugin
+                key={el.options.uid}
+                rowId={el.options.uid}
+                options={{ ...el.options }}
+              />
+            );
           })
         )}
       </div>

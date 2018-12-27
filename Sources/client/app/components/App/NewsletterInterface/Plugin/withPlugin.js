@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { DragSource } from 'react-dnd';
 import { connect } from 'react-redux';
@@ -10,15 +12,18 @@ const Types = {
 };
 
 const itemSource = {
-  beginDrag({ options }) {
+  beginDrag({ options, rowId }) {
     return {
-      options
+      options,
+      rowId
     };
   },
 
-  endDrag({ options }) {
+  endDrag({ options, rowId }) {
+    console.log(rowId);
     return {
-      options
+      options,
+      rowId
     };
   }
 };

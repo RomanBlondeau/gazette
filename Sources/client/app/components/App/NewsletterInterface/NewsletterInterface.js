@@ -6,6 +6,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import CheckIcon from '@material-ui/icons/Done';
 import ErrorIcon from '@material-ui/icons/Error';
 import Snackbar from '@material-ui/core/Snackbar';
+
 import View from '../../../containers/Container/PluginViewContainer';
 import Plugin from './PluginView/PluginView';
 import PluginProps from '../../../containers/Container/PluginPropsContainer';

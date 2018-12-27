@@ -6,7 +6,7 @@ function getOption(targets, toUpdate, target) {
   if (targets.length === 1 && targets[0] === 'columns') {
     options = {
       ...toUpdate.options,
-      [targets[0]]: [...Array(parseInt(target.value))].map(() => '_'),
+      [targets[0]]: [...Array(parseInt(target.value, 10))].map(() => '_'),
       value: target.value
     };
   } else if (targets.length === 1) {
@@ -126,6 +126,21 @@ function setProjectId(state, projectId) {
   };
 }
 
+function swapRow(state, { draggedUid, toSwapUid }) {
+  const newRows = [...state.rows];
+  const draggedIndex = newRows.findIndex(el => el.options.uid === draggedUid);
+  const toSwapIndex = newRows.findIndex(el => el.options.uid === toSwapUid);
+
+  [newRows[draggedIndex], newRows[toSwapIndex]] = [
+    newRows[toSwapIndex],
+    newRows[draggedIndex]
+  ];
+  return {
+    ...state,
+    rows: newRows
+  };
+}
+
 function container(
   state = { plugins: [], rows: [], id: undefined, projectId: undefined },
   action
@@ -147,6 +162,8 @@ function container(
       return deleteRow(state, action.uid);
     case containerConstants.ADD_PLUGIN_CONTAINER:
       return addPluginInContainer(state, action.toAdd);
+    case containerConstants.SWAP_ROW:
+      return swapRow(state, action.toSwap);
     default:
       return state;
   }

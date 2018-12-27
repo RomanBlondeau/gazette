@@ -11,6 +11,7 @@ const mapDispatchToProps = dispatch => ({
   update: row => {
     dispatch(containerAction.addRow(row));
   },
+
   initContainer: container => {
     dispatch(containerAction.initContainer(container));
   }
