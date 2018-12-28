@@ -68,7 +68,7 @@ const plugin = [
   },
   {
     name: '_',
-    plugin: withPlugin(({ columns, plugins, uid }) => (
+    plugin: withPlugin(({ columns, plugins, uid, rowIndex }) => (
       <table style={{ width: '100%' }} className={css.withPlugin}>
         <tbody>
           <tr>
@@ -81,8 +81,17 @@ const plugin = [
               }}
             />
             {columns.map((column, index) => {
+              console.log(rowIndex);
               if (column === '_') {
-                return <Column isEmpty rowId={uid} index={index} key={index} />;
+                return (
+                  <Column
+                    isEmpty
+                    rowId={uid}
+                    rowIndex={rowIndex}
+                    index={index}
+                    key={index}
+                  />
+                );
               }
               const pluginResult = plugins.find(
                 el => el.options.uid === column
@@ -94,6 +103,7 @@ const plugin = [
                   Plugin={Plugin}
                   pluginOptions={pluginResult.options}
                   rowId={uid}
+                  rowIndex={rowIndex}
                   index={index}
                   key={index}
                 />

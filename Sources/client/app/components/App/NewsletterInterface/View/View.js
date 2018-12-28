@@ -101,12 +101,14 @@ class View extends React.Component<Props> {
             <CircularProgress />
           </div>
         ) : (
-          rows.map(el => {
+          rows.map((el, index) => {
             const Plugin = pluginCreator(el.type);
+            console.log(index);
             return (
               <Plugin
                 key={el.options.uid}
                 rowId={el.options.uid}
+                rowIndex={index}
                 options={{ ...el.options }}
               />
             );

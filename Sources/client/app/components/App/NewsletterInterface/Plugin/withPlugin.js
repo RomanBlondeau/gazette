@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { Component } from 'react';
 import { DragSource } from 'react-dnd';
 import { connect } from 'react-redux';
 import css from '../../Editor/Editor.scss';
@@ -12,18 +12,19 @@ const Types = {
 };
 
 const itemSource = {
-  beginDrag({ options, rowId }) {
+  beginDrag({ options, rowId, rowIndex }) {
     return {
       options,
-      rowId
+      rowId,
+      rowIndex
     };
   },
 
-  endDrag({ options, rowId }) {
-    console.log(rowId);
+  endDrag({ options, rowId, rowIndex }) {
     return {
       options,
-      rowId
+      rowId,
+      rowIndex
     };
   }
 };
@@ -46,12 +47,20 @@ const mapDispatchToProps = dispatch => ({
 });
 
 function withPlugin(WrappedComponent, isTools = false) {
-  const Source = DragSource(Types.ITEM, itemSource, collect)(
-    ({ connectDragSource, options, dispatchToPlugin, plugins }) =>
-      connectDragSource(
+  class Plugin extends Component {
+    render() {
+      const {
+        connectDragSource,
+        options,
+        rowIndex,
+        dispatchToPlugin,
+        plugins
+      } = this.props;
+
+      return connectDragSource(
         isTools ? (
           <div className={css.plugin}>
-            <WrappedComponent {...options} />
+            <WrappedComponent {...options} rowIndex={rowIndex} />
           </div>
         ) : (
           <div
@@ -60,11 +69,18 @@ function withPlugin(WrappedComponent, isTools = false) {
               e.stopPropagation();
             }}
           >
-            <WrappedComponent {...options} plugins={plugins} />
+            <WrappedComponent
+              rowIndex={rowIndex}
+              {...options}
+              plugins={plugins}
+            />
           </div>
         )
-      )
-  );
+      );
+    }
+  }
+
+  const Source = DragSource(Types.ITEM, itemSource, collect)(Plugin);
 
   return connect(
     mapStateToProps,
