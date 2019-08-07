@@ -1,0 +1,13 @@
+{
+  "LOGIN": "/",
+  "HOME": "/home",
+  "SIGNUP": "/register",
+  "FORGOTPASSWORD": "/forgotPassword",
+  "CONTACTS": "/contacts",
+  "EDIT": "/edit/:projectId",
+  "SEND": "/send/:projectId",
+  "CALENDAR": "/calendar",
+  "HELP": "/help",
+  "SETTINGS": "/settings",
+  "NEWSLETTER": "/newsletter"
+}

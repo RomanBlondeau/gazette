@@ -1,0 +1,67 @@
+{
+  "name": "back_end_gazette",
+  "version": "1.0.0",
+  "description": "backend gazette",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000 --exit --recursive ./__test__",
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "author": "Nicolas MENETTRIER - Roman BLONDEAU",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "config": "^2.0.1",
+    "cors": "^2.8.4",
+    "crypto-js": "^3.1.9-1",
+    "dotenv-json": "^1.0.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "mocha": "^5.2.0",
+    "mysql2": "^1.6.1",
+    "nodemailer": "^4.6.8",
+    "nodemailer-express-handlebars": "^3.0.0",
+    "nodemailer-plugin-inline-base64": "^2.1.1",
+    "nodemon": "^1.18.8",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "sequelize": "^4.39.1",
+    "validator": "^10.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-mocha": "^5.2.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.0",
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{js,json,md,scss,yaml,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test",
+      "pre-push": "lint-staged && npm test"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import '../../../../scss/color.scss';
+
+.withPlugin:hover {
+  cursor: pointer;
+  background-color: #dbdbdb;
+  transition: 0.2s;
+}
+
+.withPluginText {
+  border: 1px dashed $success-color;
+}
+
+.withPluginText:hover {
+  cursor: pointer;
+  background-color: $success-color;
+  border-radius: 5px;
+  color: white!important;
+  transition: 0.2s;
+  // border: solid 2px $success-color;
+  // border-radius: 5px;
+}

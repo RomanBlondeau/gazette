@@ -1,0 +1,9 @@
+const sendConstants = {
+  SEND_REQUEST: 'SEND_REQUEST',
+  SEND_SUCCESS: 'SEND_SUCCESS',
+  SEND_FAILURE: 'SEND_FAILURE',
+  SEND_UPDATE: 'SEND_UPDATE',
+  SEND_SELECT_CONTACT: 'SEND_SELECT_CONTACT'
+};
+
+export default sendConstants;

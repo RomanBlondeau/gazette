@@ -1,0 +1,111 @@
+@import '../../../app.global';
+@import '../../../scss/color.scss';
+
+.interfaceContainer {
+  display: flex;
+  height: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.previsualisationContainer {
+  height: 100%;
+  width: 100%;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.previsualisation {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  height: 95%;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  overflow: scroll;
+  padding-bottom: 50px;
+}
+
+.toolsContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.selector {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #43425D;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  min-height: 150px;
+  height: auto;
+  overflow: auto;
+}
+
+.contacts {
+  background-color: #43425D;
+  height: 95%;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.pluginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  max-width: 120px;
+  padding: 5px;
+  transition: 0.1s;
+}
+
+.pluginContainer:hover {
+  background-color: $success-color;
+  border-radius: 5px;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.plugin {
+  background-color: #fff;
+  border-radius: 5px;
+  color: grey;
+  width: 100%;
+  text-align: center;
+}
+
+.pluginWrapper {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.pluginWrapper:hover {
+  cursor: pointer;
+}
+
+.imgWrapper {
+  width: 100%;
+}
+
+.pluginImage {
+  max-width: 80%;
+  max-height: 25px;
+  margin-bottom: 5px;
+}
+
