@@ -23,4 +23,4 @@
 ## Authors
 
 * [**Roman Blondeau**](https://github.com/RomanBlondeau)
-* [**Nicolas Menettier**](https://github.com/Nicolas-Menettrier)
+* [**Nicolas Menettrier**](https://github.com/Nicolas-Menettrier)

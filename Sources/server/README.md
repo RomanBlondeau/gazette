@@ -62,5 +62,5 @@ rewrite `/server/.env.json.default` into `/server/.env.json`
 
 ## Authors
 
-- **Roman Blondeau** (roman.blondeau@epitech.eu)
-- **Nicolas Menettier** (nicolas1.menettier@epitech.eu)
+* [**Roman Blondeau**](https://github.com/RomanBlondeau)
+* [**Nicolas Menettrier**](https://github.com/Nicolas-Menettrier)
