@@ -2,11 +2,19 @@
 
 ![logo](Misc/newspaper.png)
 
-#### An open-source desktop application to edit and send newsletter free and without tracking.
+#### [ElectronJS](https://electronjs.org/) cross platform desktop application to build, save and send email.
 
-## Mandatory documentation
+## Stack
 
-[Cahier des charges / Maquettes / Powerpoint / Excel](Doc/README.md)
+![electron-logo](Misc/electron.png "Electron Logo") [ElectronJS](https://electronjs.org/)
+
+![react-logo](Misc/react.png "React Logo") [ReactJS](https://reactjs.org/)
+
+![redux-logo](Misc/redux.png "Redux Logo") [Redux](https://redux.js.org/)
+
+![node-logo](Misc/node.png "Node Logo") [NodeJS](https://nodejs.org/en/)
+
+![mysql-logo](Misc/mysql.png "MySQL Logo") [MySQL](https://www.mysql.com/)
 
 ## Technical documentation
 
@@ -14,5 +22,5 @@
 
 ## Authors
 
-* **Roman Blondeau**   (roman.blondeau@epitech.eu)
-* **Nicolas Menettier**   (nicolas1.menettier@epitech.eu)
+* [**Roman Blondeau**](https://github.com/RomanBlondeau)
+* [**Nicolas Menettier**](https://github.com/Nicolas-Menettrier)

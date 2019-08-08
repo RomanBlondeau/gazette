@@ -1,0 +1,17 @@
+{
+  "database_config": [
+    "",
+    "",
+    "",
+    {
+      "host": "localhost",
+      "dialect": "mysql",
+      "logging": false,
+      "define": {
+        "timestamps": false
+      }
+    }
+  ],
+  "port": 3000,
+  "secretOrKey": ""
+}

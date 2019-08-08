@@ -1,4 +1,4 @@
-# Gazette technical documentation
+# Gazette client technical documentation
 
 ## Table of contents
 
@@ -6,11 +6,7 @@
    1. [Prerequisites](#prerequisites)
    2. [Configuration](#configuration)
    3. [Deployment](#deployment)
-2. [Technical aspects](#technical-aspects)
-   1. [Stack](#stack)
-   2. [API](#API)
-   3. [Structure](#Structure)
-   4. [Resources](#Resources)
+2. [Stack](#stack)
 3. [Authors](#Authors)
 
 ## Install
@@ -20,6 +16,10 @@
 [yarn](https://yarnpkg.com/lang/en/)
 
 #### Configuration
+
+`/client/app/config/api.js`
+
+- baseUrl = url of back-end server (can be found in `/server/src/config/default.json`)
 
 #### Deployment
 
@@ -92,15 +92,13 @@ $ yarn test-e2e
 DEBUG_PROD=true yarn package
 ```
 
-## Technical aspects
+## Stack
 
-#### Stack
+![electron-logo](../../Misc/electron.png 'Electron Logo') [ElectronJS](https://electronjs.org/)
 
-#### API
+![react-logo](../../Misc/react.png 'React Logo') [ReactJS](https://reactjs.org/)
 
-#### Structure
-
-#### Resources
+![redux-logo](../../Misc/redux.png 'Redux Logo') [Redux](https://redux.js.org/)
 
 ## Authors
 
