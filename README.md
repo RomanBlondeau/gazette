@@ -24,3 +24,7 @@
 
 * [**Roman Blondeau**](https://github.com/RomanBlondeau)
 * [**Nicolas Menettrier**](https://github.com/Nicolas-Menettrier)
+
+## Built with
+
+[Electron react boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
